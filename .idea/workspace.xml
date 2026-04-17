@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41f15d3c-4054-4f7b-8576-2a61c8ddb3e4" name="Changes" comment="">
-      <change afterPath="$USER_HOME$/si/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/si.iml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$USER_HOME$/si/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/si/si/settings.py" beforeDir="false" afterPath="$USER_HOME$/si/si/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/si" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Uk-Kirya"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Uk-Kirya/steppe_intelligence.git",
+    "accountId": "e54b8370-017b-4876-b8d8-1669d7e1f3da"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -109,7 +114,7 @@
       <workItem from="1776238338562" duration="383000" />
       <workItem from="1776240075561" duration="13268000" />
       <workItem from="1776285879567" duration="3464000" />
-      <workItem from="1776330294868" duration="58003000" />
+      <workItem from="1776330294868" duration="58293000" />
     </task>
     <servers />
   </component>
