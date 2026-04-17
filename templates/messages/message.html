@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .content a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Заявка с сайта</h1>
+            <h4>Steppe Intelligence</h4>
+        </div>
+        <div class="content">
+            <ul>
+                <li><b>Тема сообщения:</b> {{ subject }}</li>
+                <li><b>Имя:</b> {{ name }}</li>
+                <li><b>Телефон:</b> {{ phone }}</li>
+                <li><b>E-mail:</b> {{ email }}</li>
+                <li><b>Сообщение:</b> {{ message }}</li>
+                <li><b>Должность:</b> {{ post }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

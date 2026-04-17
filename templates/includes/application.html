@@ -1,0 +1,38 @@
+<div class="container-fluid application__block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Форма обратной связи</h2>
+            </div>
+            <div class="col-lg-9">
+                <form action="{% url 'content:application' %}" method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="row">
+
+                        <input type="hidden" name="subject" value="Форма обратной связи">
+
+                        <div class="col-lg-4 mb-4">
+                            <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <input type="email" name="email" placeholder="E-mail" class="form-control" required>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
+                        </div>
+                        <div class="col-lg-8 mb-4">
+                            <textarea name="message" placeholder="Сообщение"></textarea>
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <button type="submit">Отправить</button>
+                        </div>
+                        <div class="col-12">
+                            <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

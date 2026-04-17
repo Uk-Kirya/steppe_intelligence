@@ -1,0 +1,77 @@
+{% load static %}
+
+<header class="nav-down">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'content:home' %}">
+                    <picture>
+                        <img src="{% static 'img/logo.svg' %}" alt="">
+                    </picture>
+                </a>
+                <ul>
+                    <li {% if request.path == '/' %} class="active" {% endif %}>
+                        <a href="{% url 'content:home' %}">Главная</a>
+                    </li>
+                    {% for item in pages %}
+                        {% if item.header_menu %}
+                            <li class="{% if item.is_dedicated %} sb {% endif %} {% if item.slug in request.path %} active {% endif %}">
+                                <a href="{% url 'content:page' slug=item.slug %}">
+                                    {{ item.title_h1 }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div>
+                    {% if request.LANGUAGE_CODE == 'ru' %}
+                        <div class="dropdown">
+                            <button id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                Ру
+                                <picture>
+                                    <img src="{% static 'img/arrow.svg' %}" alt="">
+                                </picture>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>Ру</li>
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/kk{{ path_without_lang }}">Kz</a></li>
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/en{{ path_without_lang }}">En</a></li>
+                            </ul>
+                        </div>
+                    {% elif request.LANGUAGE_CODE == 'kk' %}
+                        <div class="dropdown">
+                            <button id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                Kz
+                                <picture>
+                                    <img src="{% static 'img/arrow.svg' %}" alt="">
+                                </picture>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/ru{{ path_without_lang }}">Ру</a></li>
+                                <li>Kz</li>
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/en{{ path_without_lang }}">En</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="dropdown">
+                            <button id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                En
+                                <picture>
+                                    <img src="{% static 'img/arrow.svg' %}" alt="">
+                                </picture>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/ru{{ path_without_lang }}">Ру</a></li>
+                                <li><a href="{% url 'set_language' %}?language=ru&next=/kk{{ path_without_lang }}">Kz</a></li>
+                                <li>En</li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <picture data-bs-toggle="offcanvas" data-bs-target="#menu">
+                        <img src="{% static 'img/menu.svg' %}" alt="">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

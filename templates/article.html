@@ -1,0 +1,144 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ article.title_h1 }} — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+
+        <div class="container inner__header">
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li>/</li>
+                        <li><a href="{% url 'content:page' slug='issledovaniya' %}">Исследования</a></li>
+                        <li>/</li>
+                        <li>{{ article.title_h1 }}</li>
+                    </ul>
+                    <h1>{{ article.title_h1 }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="article__image__block">
+                        <div class="ratio ratio-16x9">
+                            <div>
+                                <picture>
+                                    <img src="{{ article.image.url }}" alt="">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="aarticle__info">
+                            <div class="date__block">
+                                <picture>
+                                    <img src="{% static 'img/calendar.svg' %}" alt="">
+                                </picture>
+                                {{ article.date }}
+                            </div>
+                            <div class="shared__block">
+                                Поделиться
+                                {% with request.build_absolute_uri as current_url %}
+                                <div>
+                                    <!-- X (Twitter) -->
+                                    <a href="https://twitter.com/intent/tweet?url={{ current_url }}&text={{ article.title|urlencode }}" target="_blank">
+                                        <picture>
+                                            <img src="{% static 'img/x.svg' %}" alt="">
+                                        </picture>
+                                    </a>
+
+                                    <!-- Telegram -->
+                                    <a href="https://t.me/share/url?url={{ current_url }}&text={{ article.title|urlencode }}" target="_blank">
+                                        <picture>
+                                            <img src="{% static 'img/tg.svg' %}" alt="">
+                                        </picture>
+                                    </a>
+
+                                    <!-- LinkedIn -->
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ current_url }}" target="_blank">
+                                        <picture>
+                                            <img src="{% static 'img/in.svg' %}" alt="">
+                                        </picture>
+                                    </a>
+
+                                    <!-- Threads (официального share URL нет) -->
+                                    <a href="https://www.threads.net/intent/post?text={{ article.title|urlencode }}%20{{ current_url }}" target="_blank">
+                                        <picture>
+                                            <img src="{% static 'img/threads.svg' %}" alt="">
+                                        </picture>
+                                    </a>
+                                </div>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="article__text">
+                        {{ article.text | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if articles %}
+            <div class="container-fluid more__publications">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 mb-5 mb-lg-0">
+                            <h2>Latest Insights</h2>
+                            <a href="{% url 'content:page' slug='issledovaniya' %}" class="button">Все публикации</a>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row">
+                                {% for item in articles %}
+                                    <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+                                        <div class="card__3 {% if item.by_subscription %} card__3__close {% endif %}">
+                                            <div class="ratio ratio-16x9">
+                                                <div>
+                                                    <a href="{{ item.get_absolute_url }}">
+                                                        {% if item.by_subscription %}
+                                                            <span>
+                                                                <img src="{% static 'img/close2.svg' %}" alt="">
+                                                            </span>
+                                                        {% endif %}
+                                                        <picture>
+                                                            <img src="{{ item.image.url }}" alt="">
+                                                        </picture>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="card__3__text">
+                                                <a href="{{ item.get_absolute_url }}">{{ item }}</a>
+                                                <span>{{ item.date }}</span>
+                                                <div class="author__block">
+                                                    {% if item.author.profile.photo %}
+                                                        <picture>
+                                                            <img src="{{ item.author.profile.photo.url }}" alt="">
+                                                        </picture>
+                                                    {% else %}
+                                                        <picture style="border-radius: 0;">
+                                                            <img src="{% static 'fav.png' %}" alt="">
+                                                        </picture>
+                                                    {% endif %}
+                                                    {{ item.author.profile.name }} {{ item.author.profile.lastname }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% include 'includes/application.html' %}
+
+    </main>
+{% endblock %}

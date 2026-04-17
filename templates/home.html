@@ -1,0 +1,83 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Главная — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+        {% for v in vars %}
+            {% if v.name == 'home' %}
+                <div class="container block__1">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 block__1__text">
+                            <div>
+                                <h1>{{ v.text_1 }}</h1>
+                                <p>{{ v.text_2 }}</p>
+                                <a href="{% url 'content:page' slug='uslugi' %}" class="button">Наши услуги</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-4 mt-lg-0">
+                            <picture>
+                                <img src="{% static 'img/slide.png' %}" alt="">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div class="container block__2">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Чем мы занимаемся</h2>
+                </div>
+                {% for card in cards %}
+                    {% if card.type == 'type_1' %}
+                        <div class="col-lg-4">
+                            <div class="card__1">
+                                <picture>
+                                    <img src="{{ card.icon.url }}" alt="">
+                                </picture>
+                                <h3>{{ card.title }}</h3>
+                                <p>{{ card.text }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container block__3">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Почему Steppe Intelligence</h2>
+                </div>
+                {% for card in cards %}
+                    {% if card.type == 'type_2' %}
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="card__2">
+                                <h3>{{ card.title }}</h3>
+                                <hr>
+                                <p>{{ card.text }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container-fluid block__4">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2>{{ banner }}</h2>
+                        <a href="{% url 'content:page' slug='steppe-brief' %}#trial__form" class="button topLink">Запросить пробный выпуск</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'includes/application.html' %}
+
+    </main>
+{% endblock %}

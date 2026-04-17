@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+{% load static %}
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{%  static 'fav.png' %}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'font/stylesheet.css' %}">
+</head>
+
+<body class="d-flex flex-column vh-100">
+    {% include 'includes/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'includes/footer.html' %}
+    {% include 'includes/modals.html' %}
+    {% include 'includes/scripts.html' %}
+</body>
+</html>

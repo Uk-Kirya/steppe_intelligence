@@ -1,0 +1,66 @@
+{% extends 'includes/base.html' %}
+
+{% block title %}
+    Моя подписка — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+
+        <div class="container inner__header">
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li>/</li>
+                        <li>Профиль</li>
+                    </ul>
+                    <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav__profile">
+                        <li>
+                            <a href="{% url 'accounts:home' %}">Профиль</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:my_publications' %}">Мои публикации</a>
+                        </li>
+                        <li class="active">
+                            <a href="{% url 'accounts:my_plain' %}">Моя подписка</a>
+                        </li>
+                        <li class="ms-auto">
+                            <a href="{% url 'accounts:logout' %}">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="container sb__text__4">
+            <div class="row">
+                {% for plain in plains %}
+                    <div class="col-lg-4 mt-4">
+                        <div>
+                            <div>
+                                <h3>{{ plain.title }}</h3>
+                                <h2>{{ plain.price | safe }}</h2>
+                                <p>{{ plain.text }}</p>
+                            </div>
+                            {% if plain.link %}
+                                <a href="{{ plain.link }}">Подписаться</a>
+                            {% else %}
+                                <a href="#trial__form">Получить пробный выпуск</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        -->
+    </main>
+{% endblock %}

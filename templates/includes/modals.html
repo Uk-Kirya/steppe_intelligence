@@ -1,0 +1,49 @@
+{% load static %}
+
+<div class="modal fade" id="application">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Онлайн заявка</h1>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="needs-validation" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="name" class="form-control" id="nameInput" placeholder="Ваше имя">
+                        <label for="nameInput">Ваше имя</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="phone" class="phone__mask form-control" id="phoneInput"
+                            placeholder="Ваш телефон">
+                        <label for="phoneInput">Ваш телефон</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" name="email" class="form-control" id="emailInput"
+                            placeholder="Ваша почта">
+                        <label for="emailInput">Ваша почта</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 p-3">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="offcanvas offcanvas-end" id="menu">
+    <div class="offcanvas-body">
+        <picture data-bs-dismiss="offcanvas">
+            <img src="{% static 'img/close.svg' %}" alt="" class="close__button">
+        </picture>
+        <ul>
+            <li class="active"><a href="{% url 'content:home' %}">Главная</a></li>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Услуги</a></li>
+            <li class="sb"><a href="#">Steppe Brief</a></li>
+            <li><a href="#">Исследования</a></li>
+            <li><a href="#">Обучение</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </div>
+</div>

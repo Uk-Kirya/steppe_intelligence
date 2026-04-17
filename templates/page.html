@@ -1,0 +1,690 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ page.title_h1 }} — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+
+        <div class="container inner__header">
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li>/</li>
+                        <li>{{ page.title_h1 }}</li>
+                    </ul>
+                    <h1>{{ page.title_h1 }}</h1>
+                </div>
+            </div>
+        </div>
+
+        {% if page.type == 'text' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 mb-5 policy__oferta__text">
+                        {{ page.text | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.type == 'about' %}
+            <div class="container about__inner__block">
+                <div class="row">
+                    {% for v in vars %}
+                        {% if v.name == 'about' %}
+                            <div class="col-lg-5">
+                                <h2>{{ v.text_1 }}</h2>
+                                <hr>
+                                {{ v.text_3 | safe }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for v in vars %}
+                        {% if v.name == 'about_2' %}
+                            <div class="col-lg-6 offset-lg-1 mt-5 mt-lg-0">
+                                <h2>{{ v.text_1 }}</h2>
+                                <hr>
+                                {{ v.text_3 | safe }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for v in vars %}
+                        {% if v.name == 'about_3' %}
+                            <div class="col-lg-10 offset-lg-1">
+                                <h2>{{ v.text_1 }}</h2>
+                                <hr>
+                                <picture>
+                                    <img src="{{ v.image.url }}" alt="">
+                                </picture>
+                                {{ v.text_3 | safe }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% for card in cards %}
+                {% if card.type == 'type_3' %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="banner__block">
+                                    <div>
+                                        <p>
+                                            <strong>{{ card.title }}</strong>
+                                            {{ card.text }}
+                                        </p>
+                                    </div>
+                                    <a href="{% url 'content:page' slug='stat-ekspertom' %}" class="button">Стать частью сети</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {% include 'includes/application.html' %}
+
+        {% endif %}
+
+        {% if page.type == 'services' %}
+            <div class="container">
+                <div class="row">
+                    {% for card in cards %}
+                        {% if card.type == 'type_1' %}
+                            <div class="col-lg-4">
+                                <div class="card__1">
+                                    <picture>
+                                        <img src="{{ card.icon.url }}" alt="">
+                                    </picture>
+                                    <h3>{{ card.title }}</h3>
+                                    <p>{{ card.text }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for card in cards %}
+                        {% if card.type == 'type_4' %}
+                            <div class="col-12 mt-4">
+                                <div class="banner__block">
+                                    <div>
+                                        <picture>
+                                            <img src="{{ card.icon.url }}" alt="">
+                                        </picture>
+                                        <p>
+                                            <strong>{{ card.title }}</strong>
+                                            {{ card.text }}
+                                        </p>
+                                    </div>
+                                    <a href="{% url 'content:page' slug='steppe-brief' %}" class="button">Узнать подробнее</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include 'includes/application.html' %}
+
+        {% endif %}
+
+        {% if page.type == 'sb' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="sb__text__1">
+                            {{ page.text | safe }}
+                            <a href="#trial__form" class="button topLink">Запросить пробный выпуск</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row sb__text__2">
+                    <div class="col-12">
+                        <h2>Что включено в каждый выпуск</h2>
+                    </div>
+                    <div class="col-12">
+                        {% for card in cards %}
+                            {% if card.type == 'type_5' %}
+                                <div>
+                                    <p><strong>{{ card.title }}</strong></p>
+                                    <hr>
+                                    <p>{{ card.text }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid sb__text__3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Для кого</h2>
+                        </div>
+                        {% for card in cards %}
+                            {% if card.type == 'type_6' %}
+                                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                                    <div>
+                                        <picture>
+                                            <img src="{{ card.icon.url }}" alt="">
+                                        </picture>
+                                        <p><strong>{{ card.title }}</strong></p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="container sb__text__4">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Тарифы</h2>
+                    </div>
+                </div>
+                <div class="row" id="trials">
+                    {% for plain in plains %}
+                        <div class="col-lg-4 mt-4">
+                            <div>
+                                <div>
+                                    <h3>{{ plain.title }}</h3>
+                                    <h2>{{ plain.price | safe }}</h2>
+                                    <p>{{ plain.text }}</p>
+                                </div>
+                                {% if plain.link %}
+                                    <a href="{{ plain.link }}">Подписаться</a>
+                                {% else %}
+                                    <a href="#trial__form">Получить пробный выпуск</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>{{ tarif_text }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid application__block" id="trial__form">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Запросить пробный выпуск</h2>
+                        </div>
+                        <div class="col-lg-9">
+                            <form action="{% url 'content:application' %}" method="post" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                <div class="row">
+
+                                    <input type="hidden" name="subject" value="Запрос пробного выпуска">
+
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="email" name="email" placeholder="E-mail" class="form-control" required>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="text" name="post" placeholder="Должность" class="form-control">
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <button type="submit">Получить пробный выпуск</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.type == 'researches' %}
+            <div class="container">
+                <label for="search__filters__block" id="search__filters__button">
+                    Поиск и фильтрация
+                    <picture>
+                        <img src="{% static 'img/filters.svg' %}" alt="">
+                    </picture>
+                    <input type="checkbox" id="search__filters__block">
+                </label>
+                <form method="get" id="search__filters">
+                    <div class="row">
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="search__block">
+                                <input type="text" name="query" class="form-control" value="{{ request.GET.query }}" placeholder="Поиск статей">
+                                <button type="submit">Искать</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="types__block">
+                                <span>Тип публикаций:</span>
+                                <select name="publications_type">
+                                    <option value="">Все</option>
+                                    {% for type in pub_types %}
+                                        <option value="{{ type.id }}"
+                                            {% if request.GET.publications_type == type.id|stringformat:"s" %}selected{% endif %}>
+                                            {{ type }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 filters__block">
+                            {% for country in countries %}
+                                <label>
+                                    {{ country }}
+                                    <input
+                                        type="checkbox"
+                                        name="countries"
+                                        value="{{ country.id }}"
+                                        {% if country.id|stringformat:"s" in selected_countries %}checked{% endif %}
+                                    >
+                                </label>
+                            {% endfor %}
+
+                            <hr>
+
+                            {% for expertise in expertises %}
+                                <label>
+                                    {{ expertise }}
+                                    <input
+                                        type="checkbox"
+                                        name="expertises"
+                                        value="{{ expertise.id }}"
+                                        {% if expertise.id|stringformat:"s" in selected_expertises %}checked{% endif %}
+                                    >
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container mt-4">
+                <div class="row">
+                    {% for article in articles %}
+                        <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                            <div class="card__3 {% if article.by_subscription %} card__3__close {% endif %}">
+                                <div class="ratio ratio-16x9">
+                                    <div>
+                                        <a href="{{ article.get_absolute_url }}">
+                                            {% if article.by_subscription %}
+                                                <span>
+                                                    <img src="{% static 'img/close2.svg' %}" alt="">
+                                                </span>
+                                            {% endif %}
+                                            <picture>
+                                                <img src="{{ article.image.url }}" alt="">
+                                            </picture>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card__3__text">
+                                    <span>{{ article.date }}</span>
+                                    <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                                    <p>{{ article.short_text }}</p>
+                                    {% if article.countries.all or article.expertises.all %}
+                                        <ul>
+                                            {% for country in article.countries.all %}
+                                                <li>#{{ country }}</li>
+                                            {% endfor %}
+                                            {% for expertise in article.expertises.all %}
+                                                <li>#{{ expertise }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p>Статей пока нет ...</p>
+                    {% endfor %}
+
+                    {% if paginator.num_pages > 1 %}
+                        <div class="col-12 pagination">
+                            <ul>
+                                {% for item in articles.paginator.page_range %}
+                                    {% if item == articles.number %}
+                                        <li><span>{{ item }}</span></li>
+                                    {% else %}
+                                        <li><a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ item }}">{{ item }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            {% include 'includes/application.html' %}
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const form = document.getElementById('search__filters');
+                    const inputs = form.querySelectorAll('input[type="checkbox"], select');
+
+                    let timeout = null;
+
+                    inputs.forEach(input => {
+                        input.addEventListener('change', () => {
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                form.submit();
+                            }, 300); // 300мс задержка
+                        });
+                    });
+                });
+            </script>
+
+        {% endif %}
+
+        {% if page.type == 'learning' %}
+            <div class="container training__1">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="ps-lg-5">{{ training_text }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid training__2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Кому подойдут наши программы</h2>
+                        </div>
+                        <div class="col-12">
+                            {% for card in cards %}
+                                {% if card.type == 'type_7' %}
+                                    <div>
+                                        <hr>
+                                        <p>{{ card.text }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container training__3">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>Как проходит обучение</h2>
+                    </div>
+                    <div class="col-lg-5 mt-4 mt-lg-0">
+                        <p>{{ training_text_2}}</p>
+                    </div>
+                </div>
+                <div class="row mt-3 mt-lg-5">
+                    {% for card in cards %}
+                        {% if card.type == 'type_8' %}
+                            <div class="col-lg-4">
+                                <div class="card__1">
+                                    <picture>
+                                        <img src="{{ card.icon.url }}" alt="">
+                                    </picture>
+                                    <h3>{{ card.title }}</h3>
+                                    <p>{{ card.text }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container training__4">
+                <div class="row">
+                    <div class="col-12 training__4__zag">
+                        <h2>Как начать?</h2>
+                        <hr>
+                    </div>
+                    <div class="col-12 training__4__steps">
+                        {% for card in cards %}
+                            {% if card.type == 'type_9' %}
+                                <div>
+                                    <h4>{{ card.order }}</h4>
+                                    <h3>{{ card.title }}</h3>
+                                    <p>{{ card.text }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <picture>
+                            <img src="{% static 'img/finish.svg' %}" alt="">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid application__block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Форма обратной связи</h2>
+                        </div>
+                        <div class="col-lg-9">
+                            <form action="#" method="get" class="needs-validation" novalidate>
+                                <div class="row">
+
+                                    <input type="hidden" name="type" value="Форма обратной связи">
+
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="email" name="email" placeholder="E-mail" class="form-control" required>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
+                                    </div>
+                                    <div class="col-lg-8 mb-4">
+                                        <textarea name="message" placeholder="Сообщение"></textarea>
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        <button type="submit">Отправить</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="#">персональных данных</a></p>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.type == 'contacts' %}
+            <div class="container contacts__1">
+                <div class="row">
+                    <div class="col-12">
+                        {{ page.text | safe }}
+                    </div>
+                </div>
+                <div class="row contact__cards">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div>
+                            <a href="mailto:{{ email }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/email.svg' %}" alt="">
+                                </picture>
+                                {{ email }}
+                            </a>
+                            <a href="mailto:info@steppeintel.kz" target="_blank">Написать письмо</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div>
+                            <a href="https://wa.me/{{ whatsapp.text_2 }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/wa.svg' %}" alt="">
+                                </picture>
+                                {{ whatsapp.text_1 }}
+                            </a>
+                            <a href="https://wa.me/77777544817" target="_blank">Открыть чат</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div>
+                            <a href="{{ linkedin }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/in2.svg' %}" alt="">
+                                </picture>
+                                Steppe Intelligence
+                            </a>
+                            <a href="{{ linkedin }}" target="_blank">Перейти в профиль</a>
+                        </div>
+                    </div>
+                </div>
+                {% for v in vars %}
+                    {% if v.name == 'contacts_text' %}
+                        <div class="row contacts__2">
+                            <div class="col-lg-6">
+                                <h2>{{ v.text_1 }}</h2>
+                                <hr>
+                                <p>{{ v.text_2 }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if page.type == 'register' %}
+            <div class="container register__block">
+                <div class="row">
+                    <ul>
+                        <li><span>Создать аккаунт</span></li>
+                        <li><a href="{% url 'content:page' slug='login' %}">Войти</a></li>
+                    </ul>
+                    <div class="col-lg-7 mb-5 ps-lg-5 ms-lg-3">
+                        {{ page.text | safe }}
+                    </div>
+                    <div class="col-12">
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="register">
+                            <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Имя"
+                                    class="form-control"
+                                    value="{{ form_data.name }}"
+                                    required
+                            >
+                            <input
+                                    type="text"
+                                    name="last_name"
+                                    placeholder="Фамилия"
+                                    class="form-control"
+                                    value="{{ form_data.last_name }}"
+                                    required
+                            >
+                            <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="E-mail"
+                                    class="form-control"
+                                    value="{{ form_data.email }}"
+                                    required
+                            >
+                            <select name="country">
+                                <option selected disabled>Страна</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.id }}">{{ country }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="expertises__block">
+                                <p class="w-100 mb-2">Сфера экспертизы</p>
+                                {% for expertise in expertises %}
+                                    <label>
+                                        <input type="checkbox" name="expertise" value="{{ expertise.id }}">
+                                        {{ expertise }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                            <textarea
+                                    name="description"
+                                    placeholder="Краткое описание опыта"
+                                    class="form-control"
+                            >{{ form_data.description }}
+                            </textarea>
+                            <input
+                                    type="text"
+                                    name="linkedin"
+                                    placeholder="Ссылка на LinkedIn"
+                                    class="form-control"
+                                    value="{{ form_data.linkedin }}"
+                            >
+                            <button type="submit">Зарегистрироваться</button>
+                            <hr>
+                            {% for v in vars %}
+                                {% if v.name == 'register_text' %}
+                                    <p>{{ v.text_1 }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if page.type == 'auth' %}
+            <div class="container register__block">
+                <div class="row">
+                    <ul>
+                        <li><a href="{% url 'content:page' slug='stat-ekspertom' %}">Создать аккаунт</a></li>
+                        <li><span>Войти</span></li>
+                    </ul>
+                    <div class="col-12">
+                        <h4 class="ms-lg-5 mb-3">Авторизация</h4>
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="auth">
+                            <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="E-mail"
+                                    class="form-control"
+                                    value="{{ form_data.email }}"
+                                    required
+                            >
+                            <input type="password" name="password" placeholder="Пароль" class="form-control" required>
+                            <div>
+                                <button type="submit">Войти</button>
+                                <a href="#" class="button" data-bs-target="#reset_password" data-bs-toggle="modal">Забыл пароль</a>
+                            </div>
+                        </form>
+                        <div class="modal fade" id="reset_password">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Восстановление пароля</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" class="needs-validation p-0" novalidate>
+                                            {% csrf_token %}
+                                            <input type="hidden" name="action" value="reset_password">
+                                            <input type="email" name="email" placeholder="E-mail" class="form-control" required>
+                                            <button type="submit">Отправить новый пароль</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

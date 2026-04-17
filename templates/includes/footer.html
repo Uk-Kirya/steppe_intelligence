@@ -1,0 +1,50 @@
+{% load static %}
+
+<footer class="mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul>
+                    <li>© {% now 'Y' %}, Steppe Intelligence</li>
+                    <li>
+                        <a href="mailto:{{ email }}">
+                            <picture>
+                                <img src="{% static 'img/email.svg' %}" alt="">
+                            </picture>
+                            {{ email }}
+                        </a>
+                    </li>
+                    {% for item in pages %}
+                        {% if item.footer_menu %}
+                            <li class="{% if item.slug in request.path %} active {% endif %}">
+                                <a href="{% url 'content:page' slug=item.slug %}">
+                                    {{ item.title_h1 }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% if messages %}
+    <div class="alert__block">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertBlock = document.querySelector(".alert__block");
+
+        if (alertBlock) {
+            setTimeout(() => {
+                alertBlock.classList.add("hidden");
+            }, 3000); // 3 секунды
+        }
+    });
+</script>

@@ -1,0 +1,81 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Мои публикации — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+
+        <div class="container inner__header">
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li>/</li>
+                        <li>Профиль</li>
+                    </ul>
+                    <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav__profile">
+                        <li>
+                            <a href="{% url 'accounts:home' %}">Профиль</a>
+                        </li>
+                        <li class="active">
+                            <a href="{% url 'accounts:my_publications' %}">Мои публикации</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'accounts:my_plain' %}">Моя подписка</a>
+                        </li>
+                        <li class="ms-auto">
+                            <a href="{% url 'accounts:logout' %}">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-4 add__publication">
+                    <a href="#">Создать публикацию +</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                    <div class="card__3">
+                        <div class="ratio ratio-16x9">
+                            <div>
+                                <a href="#">
+                                    <picture>
+                                        <img src="{% static 'img/slide.png' %}" alt="">
+                                    </picture>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card__3__text">
+                            <span>12 мая 2026</span>
+                            <a href="#">Заголовок статьи</a>
+                            <p>As sanctions enforcement hardens, the real risk lies in how decisions are made on the ground.</p>
+                            <ul>
+                                <li>#Казахстан</li>
+                                <li>#Кыргызстан</li>
+                                <li>#Политика</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+    </main>
+{% endblock %}
