@@ -212,12 +212,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'udarnik.kirill@mail.ru'
-EMAIL_HOST_PASSWORD = 'cTe9YRh2QHVcZCkc0hRn'
-DEFAULT_FROM_EMAIL = 'udarnik.kirill@mail.ru'
+EMAIL_HOST_USER = 'udarnik.kirill@gmail.com'
+EMAIL_HOST_PASSWORD = 'ktsmlaarucipuuak'
+DEFAULT_FROM_EMAIL = 'udarnik.kirill@gmail.com'
 
 
 # Кэш на 15 минут по умолчанию
