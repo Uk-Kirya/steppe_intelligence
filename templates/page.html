@@ -334,13 +334,16 @@
                                     <span>{{ article.date }}</span>
                                     <a href="{{ article.get_absolute_url }}">{{ article }}</a>
                                     <p>{{ article.short_text }}</p>
-                                    {% if article.countries.all or article.expertises.all %}
+                                    {% if article.countries.all or article.expertises.all or article.types.all %}
                                         <ul>
                                             {% for country in article.countries.all %}
                                                 <li>#{{ country }}</li>
                                             {% endfor %}
                                             {% for expertise in article.expertises.all %}
                                                 <li>#{{ expertise }}</li>
+                                            {% endfor %}
+                                            {% for type in article.types.all %}
+                                                <li>#{{ type }}</li>
                                             {% endfor %}
                                         </ul>
                                     {% endif %}
@@ -363,7 +366,6 @@
                                 {% endfor %}
                             </ul>
                         </div>
-
                     {% endif %}
                 </div>
             </div>

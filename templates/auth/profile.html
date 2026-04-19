@@ -1,5 +1,7 @@
 {% extends 'includes/base.html' %}
 
+{% load static %}
+
 {% block title %}
     Профиль — Steppe Intelligence
 {% endblock %}
@@ -9,14 +11,21 @@
 
         <div class="container inner__header">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <ul>
                         <li><a href="{% url 'content:home' %}">Главная</a></li>
                         <li>/</li>
                         <li>Профиль</li>
                     </ul>
-                    <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
+                    <h1>Добро пожаловать, {{ profile.name }}!</h1>
                 </div>
+                {% if profile.status == 'pending_review' %}
+                    <div class="col-12 mt-4">
+                        <div class="alert alert-warning m-0" role="alert">
+                            Ваш аккаунт в настоящее время находится на модерации у администратора. После завершения проверки мы уведомим вас по электронной почте!
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
 
@@ -41,5 +50,211 @@
             </div>
         </div>
 
+        <div class="container profile__inner__container">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-4 text-center">
+                        {% if profile.photo %}
+                            <div class="ratio-1x1 ratio w-50 mb-3" id="imagePreview">
+                                <div>
+                                    <picture>
+                                        <img id="previewImg" src="{{ profile.photo.url }}" alt="">
+                                    </picture>
+                                </div>
+                            </div>
+                            <p>Загрузить другое фото профиля<br>(не более 5МВ)</p>
+                            <div class="input-group mt-3">
+                                <input type="file" name="photo" class="form-control" id="imageInput">
+                            </div>
+                        {% else %}
+                            <div class="ratio-1x1 ratio w-50 mb-3" id="imagePreview" style="display: none;">
+                                <div>
+                                    <picture>
+                                        <img id="previewImg" src="" alt="">
+                                    </picture>
+                                </div>
+                            </div>
+                            <h6>Загрузить фото профиля</h6>
+                            <p>(не более 5МВ)</p>
+                            <div class="input-group mt-3">
+                                <input type="file" name="photo" class="form-control" id="imageInput">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-7 offset-lg-1 mt-4 mt-lg-0">
+                        <h5 class="mb-4">Информация обо мне</h5>
+                        <div class="profile__form__row">
+                            <div class="form-floating">
+                                <input
+                                        type="text"
+                                        name="name"
+                                        class="form-control"
+                                        id="nameField"
+                                        placeholder="Имя"
+                                        value="{{ profile.name }}"
+                                >
+                                <label for="nameField">Имя</label>
+                            </div>
+                            <div class="form-floating">
+                                <input
+                                        type="text"
+                                        name="lastname"
+                                        class="form-control"
+                                        id="lastnameField"
+                                        placeholder="Фамилия"
+                                        value="{{ profile.lastname }}"
+                                >
+                                <label for="lastnameField">Фамилия</label>
+                            </div>
+                        </div>
+                        <div class="profile__form__row">
+                            <div class="form-floating">
+                                <input
+                                        type="text"
+                                        name="phone"
+                                        class="form-control phone__mask"
+                                        id="phoneField"
+                                        placeholder="Телефон"
+                                        value="{{ profile.phone }}"
+                                >
+                                <label for="phoneField">Телефон</label>
+                            </div>
+                            <div class="form-floating">
+                                <input
+                                        type="email"
+                                        name="email"
+                                        class="form-control"
+                                        id="emailField"
+                                        placeholder="E-mail"
+                                        value="{{ profile.user.email }}"
+                                        readonly
+                                >
+                                <label for="emailField">E-mail</label>
+                            </div>
+                        </div>
+                        <hr class="mt-3 mb-4">
+                        <div class="profile__form__row">
+                            <div class="form-floating">
+                                <input
+                                        type="text"
+                                        name="linkedin"
+                                        class="form-control"
+                                        id="linkedinField"
+                                        placeholder="LinkedIn"
+                                        value="{{ profile.linkedin }}"
+                                >
+                                <label for="linkedinField">LinkedIn</label>
+                            </div>
+                            <div class="form-floating">
+                                <input
+                                        type="text"
+                                        name="post"
+                                        class="form-control"
+                                        id="postField"
+                                        placeholder="Должность"
+                                        value="{{ profile.post }}"
+                                >
+                                <label for="postField">Должность</label>
+                            </div>
+                        </div>
+                        <hr class="mt-3 mb-4">
+                        <div class="profile__form__row flex-column gap-1">
+                            <div class="form-floating">
+                                <textarea class="form-control" name="bio" placeholder="Биография" id="bioField" style="height: 100px">{{ profile.bio }}</textarea>
+                                <label for="bioField">Биография</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" name="experience" placeholder="Описание опыта" id="experienceField" style="height: 100px">{{ profile.experience }}</textarea>
+                                <label for="experienceField">Описание опыта</label>
+                            </div>
+                        </div>
+                        <hr class="mt-3 mb-4">
+                        <div class="profile__form__row flex-column gap-1">
+                            <div class="form-floating">
+                                <select class="form-select" id="countrySelect" name="country" aria-label="Страна">
+                                    {% for country in countries %}
+                                        {% if country == profile.country %}
+                                            <option value="{{ country.id }}" selected>{{ country }}</option>
+                                        {% else %}
+                                            <option value="{{ country.id }}">{{ country }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <label for="countrySelect">Страна</label>
+                            </div>
+                        </div>
+                        <hr class="mt-3 mb-4">
+                        <p>Область экспертизы</p>
+                        <ul class="expertises__list mb-4">
+                            {% for expertise in expertises %}
+                                <li>
+                                    <div class="form-check">
+                                        <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                name="expertise"
+                                                value="{{ expertise.id }}"
+                                                id="ex__{{ expertise.id }}"
+                                                {% if expertise in profile.expertises.all %}
+                                                    checked
+                                                {% endif %}
+                                        >
+                                        <label
+                                                class="form-check-label"
+                                                for="ex__{{ expertise.id }}"
+                                        >
+                                            {{ expertise }}
+                                        </label>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <hr class="mt-3 mb-4">
+                        <div class="form-floating">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
+                                    id="passwordField"
+                                    placeholder="Новый пароль"
+                                    autocomplete="new-password"
+                                    autocorrect="off"
+                                    autocapitalize="off"
+                                    spellcheck="false"
+                            >
+                            <label for="passwordField">Новый пароль</label>
+                        </div>
+                        <p class="mt-2 mb-4">Если не хотите менять пароль, оставьте поле пустым!</p>
+                        <button type="submit" class="button">Обновить информацию</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </main>
+
+    <script>
+        const input = document.getElementById('imageInput');
+        const preview = document.getElementById('imagePreview');
+        const img = document.getElementById('previewImg');
+
+        input.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
+
 {% endblock %}

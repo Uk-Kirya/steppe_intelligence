@@ -9,7 +9,7 @@
 
         <div class="container inner__header">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <ul>
                         <li><a href="{% url 'content:home' %}">Главная</a></li>
                         <li>/</li>
@@ -17,6 +17,13 @@
                     </ul>
                     <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
                 </div>
+                {% if profile.status == 'pending_review' %}
+                    <div class="col-12 mt-4">
+                        <div class="alert alert-warning m-0" role="alert">
+                            Ваш аккаунт в настоящее время находится на модерации у администратора. После завершения проверки мы уведомим вас по электронной почте!
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
 

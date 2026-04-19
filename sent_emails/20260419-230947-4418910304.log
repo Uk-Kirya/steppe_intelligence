@@ -1,0 +1,169 @@
+Content-Type: multipart/alternative;
+ boundary="===============0614929861078568945=="
+MIME-Version: 1.0
+Subject: 
+ =?utf-8?b?0JDQutGC0LjQstCw0YbQuNGPINCw0LrQutCw0YPQvdGC0LAg0L3QsCDRgdCw0Lk=?=
+ =?utf-8?b?0YLQtSBTdGVwcGUgSW50ZWxsaWdlbmNl?=
+From: no-reply@steppeintel.kz
+To: innalunar@gmail.com
+Date: Sun, 19 Apr 2026 18:09:47 -0000
+Message-ID: 
+ <177662218701.63178.5232498069824603106@1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa>
+
+--===============0614929861078568945==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Активация аккаунта на сайте Steppe Intelligence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007BFF;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #666;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Активация аккаунта на сайте Steppe Intelligence</h1>
+            <h3>Steppe Intelligence</h3>
+        </div>
+        <div class="content">
+            <h2>Здравствуйте, Инна!</h2>
+            <p>Уведомляем вас об активации вашего аккаунта на сайте steppeintel.kz</p>
+            <p>Вы можете авторизоваться по высланным вам ранее доступам!</p>
+        </div>
+        <div class="footer">
+            <p>© 2026 Steppe Intelligence. Все права защищены.</p>
+            <p>Это автоматическое сообщение, пожалуйста, не отвечайте на него.</p>
+        </div>
+    </div>
+</body>
+</html>
+--===============0614929861078568945==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Активация аккаунта на сайте Steppe Intelligence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007BFF;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #666;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Активация аккаунта на сайте Steppe Intelligence</h1>
+            <h3>Steppe Intelligence</h3>
+        </div>
+        <div class="content">
+            <h2>Здравствуйте, Инна!</h2>
+            <p>Уведомляем вас об активации вашего аккаунта на сайте steppeintel.kz</p>
+            <p>Вы можете авторизоваться по высланным вам ранее доступам!</p>
+        </div>
+        <div class="footer">
+            <p>© 2026 Steppe Intelligence. Все права защищены.</p>
+            <p>Это автоматическое сообщение, пожалуйста, не отвечайте на него.</p>
+        </div>
+    </div>
+</body>
+</html>
+--===============0614929861078568945==--
+
+-------------------------------------------------------------------------------

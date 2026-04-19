@@ -69,6 +69,21 @@ p:last-child {
     background-color: #fff !important;
 }
 
+.button__delete {
+    color: #DC2626 !important;
+    padding: 14px 32px !important;
+    border-radius: 6px !important;
+    font-size: 1rem !important;
+    display: inline-flex !important;
+    border: 1px solid #DC2626 !important;
+    cursor: pointer !important;
+}
+
+.button__delete:hover {
+    color: #fff !important;
+    background-color: #DC2626 !important;
+}
+
 a,
 button {
     text-decoration: none !important;
@@ -1422,6 +1437,7 @@ footer ul li:nth-child(2) a:hover {
     padding: 0 0 1rem 0;
     font-size: 1.1rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 3rem;
     border-bottom: 1px solid #e1e1e1;
@@ -1453,6 +1469,50 @@ footer ul li:nth-child(2) a:hover {
 .add__publication a:hover {
     background-color: #374151;
     color: #fff;
+}
+
+.profile__inner__container {
+    margin-top: 2rem;
+}
+
+.profile__inner__container .ratio-1x1 picture {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.profile__inner__container .ratio-16x9 picture {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: .375rem;
+    overflow: hidden;
+}
+
+.profile__inner__container .ratio picture img {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.profile__form__row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.profile__form__row > div {
+    width: 100%;
+    margin-bottom: .75rem;
+}
+
+.expertises__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    column-count: 2;
 }
 
 @media (min-width: 1440px) {
@@ -1780,5 +1840,26 @@ footer ul li:nth-child(2) a:hover {
         bottom: 1rem;
         left: 1rem;
         text-align: center;
+    }
+
+    .nav__profile {
+        gap: 1rem;
+    }
+
+    .nav__profile li {
+        width: calc(50% - .5rem);
+        background-color: #fff !important;
+        padding: .75rem;
+        text-align: center;
+        border-radius: .5rem;
+    }
+
+    .nav__profile a {
+        font-size: .9rem;
+    }
+
+    .profile__form__row {
+        flex-direction: column;
+        gap: 0;
     }
 }

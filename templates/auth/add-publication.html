@@ -1,0 +1,211 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Новая публикация — Steppe Intelligence
+{% endblock %}
+
+{% block content %}
+    <main>
+
+        <div class="container inner__header">
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li>/</li>
+                        <li><a href="{% url 'accounts:my_publications' %}">Мои публикации</a></li>
+                        <li>/</li>
+                        <li>Новая публикация</li>
+                    </ul>
+                    <h1>Новая публикация</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-4 add__publication">
+                    <a href="{% url 'accounts:my_publications' %}">← Вернуться назад</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container profile__inner__container">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ratio-16x9 ratio mb-4" id="imagePreview" style="display: none;">
+                            <div>
+                                <picture>
+                                    <img id="previewImg" src="" alt="">
+                                </picture>
+                            </div>
+                        </div>
+                        <h6>Загрузить изображение</h6>
+                        <p>(не более 5МВ)</p>
+                        <div class="input-group mt-3">
+                            <input type="file" name="image" class="form-control" id="imageInput">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 offset-lg-1 mt-4 mt-lg-0">
+                        <div class="form-floating mb-3">
+                            <input
+                                    type="text"
+                                    name="title"
+                                    class="form-control"
+                                    id="titleField"
+                                    placeholder="Заголовок"
+                                    value="{{ form_data.title }}"
+                            >
+                            <label for="titleField">Заголовок</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                    type="date"
+                                    name="date"
+                                    class="form-control"
+                                    id="dateField"
+                                    placeholder="Дата публикации"
+                                    value="{{ form_data.date }}"
+                            >
+                            <label for="dateField">Дата публикации</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                    type="text"
+                                    name="short_text"
+                                    class="form-control"
+                                    id="short_textField"
+                                    placeholder="Анонс"
+                                    value="{{ form_data.short_text }}"
+                            >
+                            <label for="short_textField">Анонс</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea name="text" cols="40" rows="10" id="id_full_text" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: &quot;100%&quot;, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;filebrowserUploadUrl&quot;: &quot;/ckeditor/upload/&quot;, &quot;filebrowserBrowseUrl&quot;: &quot;/ckeditor/browse/&quot;, &quot;language&quot;: &quot;ru&quot;, &quot;versionCheck&quot;: false}" data-external-plugin-resources="[]" data-id="id_full_text" data-type="ckeditortype">{{ form_data.text | safe }}</textarea>
+                            <script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+                            <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="by_subscription"
+                                    id="by_subscriptionCheckbox"
+                            >
+                            <label class="form-check-label" for="by_subscriptionCheckbox">
+                                По подписке?
+                            </label>
+                        </div>
+                        <hr>
+                        <div class="expertises__block">
+                            <p class="w-100 mb-2">Сфера экспертизы</p>
+                            {% for expertise in expertises %}
+                                <label>
+                                    <input type="checkbox" name="expertise" value="{{ expertise.id }}">
+                                    {{ expertise }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <div class="expertises__block">
+                            <p class="w-100 mb-2">Страны</p>
+                            {% for country in countries %}
+                                <label>
+                                    <input type="checkbox" name="country" value="{{ country.id }}">
+                                    {{ country }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <div class="expertises__block">
+                            <p class="w-100 mb-2">Тип публикации</p>
+                            {% for type in types %}
+                                <label>
+                                    <input type="checkbox" name="type" value="{{ type.id }}">
+                                    {{ type }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <div class="form-floating mb-3">
+                            <input
+                                    type="number"
+                                    name="order"
+                                    class="form-control"
+                                    id="orderField"
+                                    placeholder="Порядковый номер"
+                                    value="{{ form_data.order }}"
+                                    min="0"
+                            >
+                            <label for="orderField">Порядковый номер</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                    type="text"
+                                    name="slug"
+                                    class="form-control"
+                                    id="slugField"
+                                    placeholder="Slug (url)"
+                                    value="{{ form_data.slug }}"
+                            >
+                            <label for="slugField">Slug (url)</label>
+                        </div>
+                        <button type="submit" class="button">Создать статью +</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <script>
+        function translit(text) {
+            const map = {
+                а:'a', б:'b', в:'v', г:'g', д:'d', е:'e', ё:'e', ж:'zh',
+                з:'z', и:'i', й:'y', к:'k', л:'l', м:'m', н:'n', о:'o',
+                п:'p', р:'r', с:'s', т:'t', у:'u', ф:'f', х:'h', ц:'c',
+                ч:'ch', ш:'sh', щ:'sch', ъ:'', ы:'y', ь:'', э:'e', ю:'yu', я:'ya',
+
+                ә:'a', ғ:'g', қ:'k', ң:'n', ө:'o', ұ:'u', ү:'u', һ:'h', і:'i'
+            };
+
+            return text.toLowerCase().split('').map(char => map[char] || char).join('');
+        }
+
+        document.getElementById('titleField').addEventListener('input', function() {
+            let slug = translit(this.value)
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-');
+
+            document.getElementById('slugField').value = slug;
+        });
+    </script>
+
+    <script>
+        const input = document.getElementById('imageInput');
+        const preview = document.getElementById('imagePreview');
+        const img = document.getElementById('previewImg');
+
+        input.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+    </script>
+
+{% endblock %}

@@ -341,9 +341,10 @@ class ArticlePage(View):
         articles = Article.objects.filter(is_active=True).exclude(pk=article.id)[:3]
 
         if article.by_subscription:
-            messages.warning(request, 'Данный материал доступен только по подписке!')
-            base_url = reverse('content:page', kwargs={'slug': 'steppe-brief'})
-            return redirect(f'{base_url}#trials')
+            if request.user != article.author:
+                messages.warning(request, 'Данный материал доступен только по подписке!')
+                base_url = reverse('content:page', kwargs={'slug': 'steppe-brief'})
+                return redirect(f'{base_url}#trials')
 
         context = {
             'article': article,

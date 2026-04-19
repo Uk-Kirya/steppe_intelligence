@@ -208,16 +208,16 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'udarnik.kirill@gmail.com'
-EMAIL_HOST_PASSWORD = 'ktsmlaarucipuuak'
-DEFAULT_FROM_EMAIL = 'udarnik.kirill@gmail.com'
+EMAIL_HOST_USER = 'no-reply@steppeintel.kz'
+EMAIL_HOST_PASSWORD = 'IxqnWLuwMEALUwXo6Ufp'
+DEFAULT_FROM_EMAIL = 'no-reply@steppeintel.kz'
 
 
 # Кэш на 15 минут по умолчанию

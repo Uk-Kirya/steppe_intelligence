@@ -11,7 +11,7 @@
 
         <div class="container inner__header">
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <ul>
                         <li><a href="{% url 'content:home' %}">Главная</a></li>
                         <li>/</li>
@@ -19,6 +19,13 @@
                     </ul>
                     <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
                 </div>
+                {% if profile.status == 'pending_review' %}
+                    <div class="col-12 mt-4">
+                        <div class="alert alert-warning m-0" role="alert">
+                            Ваш аккаунт в настоящее время находится на модерации у администратора. После завершения проверки мы уведомим вас по электронной почте!
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
 
@@ -42,40 +49,74 @@
                 </div>
             </div>
         </div>
-        <!--
+
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-4 add__publication">
-                    <a href="#">Создать публикацию +</a>
+                    <a href="{% url 'accounts:add_publication' %}">Создать публикацию +</a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
-                    <div class="card__3">
-                        <div class="ratio ratio-16x9">
-                            <div>
-                                <a href="#">
-                                    <picture>
-                                        <img src="{% static 'img/slide.png' %}" alt="">
-                                    </picture>
-                                </a>
+                {% for publication in publications %}
+                    <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
+                        <div class="card__3">
+                            {% if publication.is_active %}
+                                <span class="badge text-bg-success m-2">Опубликована</span>
+                            {% else %}
+                                <span class="badge text-bg-warning m-2">На модерации</span>
+                            {% endif %}
+                            <div class="ratio ratio-16x9">
+                                <div>
+                                    <a href="{% url 'accounts:edit_publication' pk=publication.pk %}">
+                                        {% if publication.by_subscription %}
+                                            <span>
+                                                <img src="{% static 'img/close2.svg' %}" alt="">
+                                            </span>
+                                        {% endif %}
+                                        <picture>
+                                            <img src="{{ publication.image.url }}" alt="">
+                                        </picture>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card__3__text">
+                                <span>{{ publication.date }}</span>
+                                <a href="#">{{ publication.title_h1 }}</a>
+                                <p>{{ publication.short_text }}</p>
+                                {% if publication.countries.all or publication.expertises.all or publication.types.all %}
+                                    <ul>
+                                        {% for country in publication.countries.all %}
+                                            <li>#{{ country }}</li>
+                                        {% endfor %}
+                                        {% for expertise in publication.expertises.all %}
+                                            <li>#{{ expertise }}</li>
+                                        {% endfor %}
+                                        {% for type in publication.types.all %}
+                                            <li>#{{ type }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                             </div>
                         </div>
-                        <div class="card__3__text">
-                            <span>12 мая 2026</span>
-                            <a href="#">Заголовок статьи</a>
-                            <p>As sanctions enforcement hardens, the real risk lies in how decisions are made on the ground.</p>
-                            <ul>
-                                <li>#Казахстан</li>
-                                <li>#Кыргызстан</li>
-                                <li>#Политика</li>
-                            </ul>
-                        </div>
                     </div>
-                </div>
+                {% empty %}
+                    <p class="pt-3">Публикаций пока нет ...</p>
+                {% endfor %}
+                {% if paginator.num_pages > 1 %}
+                    <div class="col-12 pagination">
+                        <ul>
+                            {% for item in publications.paginator.page_range %}
+                                {% if item == publications.number %}
+                                    <li><span>{{ item }}</span></li>
+                                {% else %}
+                                    <li><a href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ item }}">{{ item }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
-        -->
 
     </main>
 {% endblock %}
