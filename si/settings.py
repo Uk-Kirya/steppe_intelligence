@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
 ]
 
 DOMAIN = 'steppeintel.kz'
-PROTOCOL = 'https'
+PROTOCOL = 'https:/'
 
 CSRF_TRUSTED_ORIGINS = [
     'http://steppeintel.kz',
