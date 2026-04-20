@@ -142,7 +142,14 @@ class PageView(View):
 
             try:
                 password = f"{uuid4()}"
+
                 username = email.split('@')[0]
+                base_username = username
+                counter = 1
+                while User.objects.filter(username=username).exists():
+                    username = f"{base_username}-{counter}"
+                    counter += 1
+
                 user = User.objects.create_user(
                     username=username,
                     email=email,
