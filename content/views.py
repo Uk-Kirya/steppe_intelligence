@@ -162,10 +162,10 @@ class PageView(View):
                 if settings.DEBUG:
                     domain = 'http://127.0.0.1:8000'
                 else:
-                    domain = settings.DOMAIN
+                    domain = f'{settings.PROTOCOL}/{settings.DOMAIN}'
                 verification_link = f"{domain}{reverse('accounts:verify_email', kwargs={'token': verification_token.token})}"
 
-                subject = 'Регистрация аккаунта на сайте Steppe Intelligence'
+                subject = 'Регистрация аккаунта'
 
                 message_template = render_to_string('messages/success-register.html', {
                     'name': name,
@@ -261,12 +261,12 @@ class PageView(View):
                 user.set_password(new_password)
                 user.save()
 
-                subject = 'Восстановление пароля на сайте Steppe Intelligence'
+                subject = 'Восстановление пароля на сайте'
 
                 if settings.DEBUG:
                     domain = 'http://127.0.0.1:8000'
                 else:
-                    domain = settings.DOMAIN
+                    domain = f'{settings.PROTOCOL}/{settings.DOMAIN}'
                 link = f"{domain}{reverse('content:page', kwargs={'slug': 'login'})}"
 
                 message_template = render_to_string('messages/new-password.html', {

@@ -144,12 +144,12 @@ class VerifyEmailView(View):
         verification_token.is_used = True
         verification_token.save()
 
-        subject = 'Успешное подтверждение аккаунта на сайте Steppe Intelligence'
+        subject = 'Успешное подтверждение аккаунта'
 
         if settings.DEBUG:
             domain = 'http://127.0.0.1:8000'
         else:
-            domain = settings.DOMAIN
+            domain = f'{settings.PROTOCOL}/{settings.DOMAIN}'
         link = f"{domain}{reverse('content:page', kwargs={'slug': 'login'})}"
 
         message_template = render_to_string('messages/success-confirm.html', {
