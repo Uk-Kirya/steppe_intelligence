@@ -25,3 +25,5 @@ media/
 uploads/
 
 .idea/
+
+sent_emails/

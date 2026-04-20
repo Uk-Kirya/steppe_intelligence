@@ -222,7 +222,7 @@ class LogoutView(View):
         return redirect('content:home')
 
 
-class AddPublicationView(View):
+class AddPublicationView(LoginRequiredMixin, View):
     def get(self, request):
         context = {
             'form_data': request.session.pop('form_data', {}),
@@ -310,7 +310,7 @@ class AddPublicationView(View):
         return redirect('accounts:my_publications')
 
 
-class EditPublicationView(View):
+class EditPublicationView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         publication = get_object_or_404(Article, pk=kwargs['pk'])
 

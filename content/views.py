@@ -316,7 +316,7 @@ class ApplicationView(View):
                 subject,
                 message_template,
                 settings.EMAIL_HOST_USER,
-                ['udarnik.kirill@gmail.com', 'udarnik.kirill@mail.ru'],
+                ['info@steppeintel.kz'],
                 html_message=message,
                 fail_silently=False
             )
