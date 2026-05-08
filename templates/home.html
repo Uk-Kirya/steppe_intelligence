@@ -1,9 +1,10 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Главная — Steppe Intelligence
+    {% trans 'home_page' %} — Steppe Intelligence
 {% endblock %}
 
 {% block content %}
@@ -16,7 +17,7 @@
                             <div>
                                 <h1>{{ v.text_1 }}</h1>
                                 <p>{{ v.text_2 }}</p>
-                                <a href="{% url 'content:page' slug='uslugi' %}" class="button">Наши услуги</a>
+                                <a href="{% url 'content:page' slug='uslugi' %}" class="button">{% trans 'our_services' %}</a>
                             </div>
                         </div>
                         <div class="col-lg-6 mt-4 mt-lg-0">
@@ -31,7 +32,7 @@
         <div class="container block__2">
             <div class="row">
                 <div class="col-12">
-                    <h2>Чем мы занимаемся</h2>
+                    <h2>{% trans 'what_are_we_doing' %}</h2>
                 </div>
                 {% for card in cards %}
                     {% if card.type == 'type_1' %}
@@ -51,7 +52,7 @@
         <div class="container block__3">
             <div class="row">
                 <div class="col-12">
-                    <h2>Почему Steppe Intelligence</h2>
+                    <h2>{% trans 'why_us' %}</h2>
                 </div>
                 {% for card in cards %}
                     {% if card.type == 'type_2' %}
@@ -71,7 +72,9 @@
                 <div class="row">
                     <div class="col">
                         <h2>{{ banner }}</h2>
-                        <a href="{% url 'content:page' slug='steppe-brief' %}#trial__form" class="button topLink">Запросить пробный выпуск</a>
+                        <a href="{% url 'content:page' slug='steppe-brief' %}#trial__form" class="button topLink">
+                            {% trans 'get_trial' %}
+                        </a>
                     </div>
                 </div>
             </div>

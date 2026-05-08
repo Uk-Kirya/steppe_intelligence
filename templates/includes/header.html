@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <header class="nav-down">
     <div class="container">
@@ -11,7 +12,7 @@
                 </a>
                 <ul>
                     <li {% if request.path == '/' %} class="active" {% endif %}>
-                        <a href="{% url 'content:home' %}">Главная</a>
+                        <a href="{% url 'content:home' %}">{% trans 'home_page' %}</a>
                     </li>
                     {% for item in pages %}
                         {% if item.header_menu %}

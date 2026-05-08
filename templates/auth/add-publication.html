@@ -1,9 +1,10 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Новая публикация — Steppe Intelligence
+    {% trans 'new_publication' %} — Steppe Intelligence
 {% endblock %}
 
 {% block content %}
@@ -13,13 +14,13 @@
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
-                        <li><a href="{% url 'accounts:my_publications' %}">Мои публикации</a></li>
+                        <li><a href="{% url 'accounts:my_publications' %}">{% trans 'my_publications' %}</a></li>
                         <li>/</li>
-                        <li>Новая публикация</li>
+                        <li>{% trans 'new_publication' %}</li>
                     </ul>
-                    <h1>Новая публикация</h1>
+                    <h1>{% trans 'new_publication' %}</h1>
                 </div>
             </div>
         </div>
@@ -27,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-4 add__publication">
-                    <a href="{% url 'accounts:my_publications' %}">← Вернуться назад</a>
+                    <a href="{% url 'accounts:my_publications' %}">← {% trans 'come_back' %}</a>
                 </div>
             </div>
         </div>
@@ -44,8 +45,8 @@
                                 </picture>
                             </div>
                         </div>
-                        <h6>Загрузить изображение</h6>
-                        <p>(не более 5МВ)</p>
+                        <h6>{% trans 'upload_image' %}</h6>
+                        <p>({% trans 'no_more_5mb' %})</p>
                         <div class="input-group mt-3">
                             <input type="file" name="image" class="form-control" id="imageInput">
                         </div>
@@ -57,10 +58,10 @@
                                     name="title"
                                     class="form-control"
                                     id="titleField"
-                                    placeholder="Заголовок"
+                                    placeholder="{% trans 'header' %}"
                                     value="{{ form_data.title }}"
                             >
-                            <label for="titleField">Заголовок</label>
+                            <label for="titleField">{% trans 'header' %}</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input
@@ -68,10 +69,10 @@
                                     name="date"
                                     class="form-control"
                                     id="dateField"
-                                    placeholder="Дата публикации"
+                                    placeholder="{% trans 'date_of_publication' %}"
                                     value="{{ form_data.date }}"
                             >
-                            <label for="dateField">Дата публикации</label>
+                            <label for="dateField">{% trans 'date_of_publication' %}</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input
@@ -79,10 +80,10 @@
                                     name="short_text"
                                     class="form-control"
                                     id="short_textField"
-                                    placeholder="Анонс"
+                                    placeholder="{% trans 'announcement' %}"
                                     value="{{ form_data.short_text }}"
                             >
-                            <label for="short_textField">Анонс</label>
+                            <label for="short_textField">{% trans 'announcement' %}</label>
                         </div>
                         <div class="form-floating mb-3">
                             <textarea name="text" cols="40" rows="10" id="id_full_text" data-processed="0" data-config="{&quot;skin&quot;: &quot;moono-lisa&quot;, &quot;toolbar_Basic&quot;: [[&quot;Source&quot;, &quot;-&quot;, &quot;Bold&quot;, &quot;Italic&quot;]], &quot;toolbar_Full&quot;: [[&quot;Styles&quot;, &quot;Format&quot;, &quot;Bold&quot;, &quot;Italic&quot;, &quot;Underline&quot;, &quot;Strike&quot;, &quot;SpellChecker&quot;, &quot;Undo&quot;, &quot;Redo&quot;], [&quot;Link&quot;, &quot;Unlink&quot;, &quot;Anchor&quot;], [&quot;Image&quot;, &quot;Flash&quot;, &quot;Table&quot;, &quot;HorizontalRule&quot;], [&quot;TextColor&quot;, &quot;BGColor&quot;], [&quot;Smiley&quot;, &quot;SpecialChar&quot;], [&quot;Source&quot;]], &quot;toolbar&quot;: &quot;Full&quot;, &quot;height&quot;: 291, &quot;width&quot;: &quot;100%&quot;, &quot;filebrowserWindowWidth&quot;: 940, &quot;filebrowserWindowHeight&quot;: 725, &quot;filebrowserUploadUrl&quot;: &quot;/ckeditor/upload/&quot;, &quot;filebrowserBrowseUrl&quot;: &quot;/ckeditor/browse/&quot;, &quot;language&quot;: &quot;ru&quot;, &quot;versionCheck&quot;: false}" data-external-plugin-resources="[]" data-id="id_full_text" data-type="ckeditortype">{{ form_data.text | safe }}</textarea>
@@ -97,12 +98,12 @@
                                     id="by_subscriptionCheckbox"
                             >
                             <label class="form-check-label" for="by_subscriptionCheckbox">
-                                По подписке?
+                                {% trans 'by_subscription' %}
                             </label>
                         </div>
                         <hr>
                         <div class="expertises__block">
-                            <p class="w-100 mb-2">Сфера экспертизы</p>
+                            <p class="w-100 mb-2">{% trans 'by_subscription' %}{% trans 'scope_of_expertise' %}</p>
                             {% for expertise in expertises %}
                                 <label>
                                     <input type="checkbox" name="expertise" value="{{ expertise.id }}">
@@ -112,7 +113,7 @@
                         </div>
                         <hr>
                         <div class="expertises__block">
-                            <p class="w-100 mb-2">Страны</p>
+                            <p class="w-100 mb-2">{% trans 'countries' %}</p>
                             {% for country in countries %}
                                 <label>
                                     <input type="checkbox" name="country" value="{{ country.id }}">
@@ -122,7 +123,7 @@
                         </div>
                         <hr>
                         <div class="expertises__block">
-                            <p class="w-100 mb-2">Тип публикации</p>
+                            <p class="w-100 mb-2">{% trans 'type_of_publication' %}</p>
                             {% for type in types %}
                                 <label>
                                     <input type="checkbox" name="type" value="{{ type.id }}">
@@ -137,11 +138,11 @@
                                     name="order"
                                     class="form-control"
                                     id="orderField"
-                                    placeholder="Порядковый номер"
+                                    placeholder="{% trans 'sequence_number' %}"
                                     value="{{ form_data.order }}"
                                     min="0"
                             >
-                            <label for="orderField">Порядковый номер</label>
+                            <label for="orderField">{% trans 'sequence_number' %}</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input
@@ -154,7 +155,7 @@
                             >
                             <label for="slugField">Slug (url)</label>
                         </div>
-                        <button type="submit" class="button">Создать статью +</button>
+                        <button type="submit" class="button">{% trans 'create_an_article' %} +</button>
                     </div>
                 </div>
             </form>

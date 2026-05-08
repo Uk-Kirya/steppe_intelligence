@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 16:02+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/validators.py:10
+msgid "Unsupported file extension. Supported formats are: JPG, JPEG, PNG."
+msgstr "Unsupported file extension. Supported formats are: JPG, JPEG, PNG."
+
+#: templates/article.html:17 templates/auth/add-publication.html:17
+#: templates/auth/edit-publication.html:17 templates/auth/my-plain.html:16
+#: templates/auth/my-publications.html:17 templates/auth/profile.html:17
+#: templates/home.html:7 templates/includes/header.html:15
+#: templates/includes/modals.html:42 templates/page.html:17
+msgid "home_page"
+msgstr "Home page"
+
+#: templates/article.html:19
+msgid "researches"
+msgstr "Researches"
+
+#: templates/article.html:46
+msgid "share"
+msgstr "Share"
+
+#: templates/article.html:95
+msgid "all_publications"
+msgstr "All publications"
+
+#: templates/auth/add-publication.html:7 templates/auth/add-publication.html:21
+#: templates/auth/add-publication.html:23
+msgid "new_publication"
+msgstr "New publication"
+
+#: templates/auth/add-publication.html:19
+#: templates/auth/edit-publication.html:19 templates/auth/my-plain.html:40
+#: templates/auth/my-publications.html:7 templates/auth/my-publications.html:41
+#: templates/auth/profile.html:41
+msgid "my_publications"
+msgstr "My publications"
+
+#: templates/auth/add-publication.html:31
+#: templates/auth/edit-publication.html:31
+msgid "come_back"
+msgstr "Go back"
+
+#: templates/auth/add-publication.html:48
+msgid "upload_image"
+msgstr "Upload image"
+
+#: templates/auth/add-publication.html:49
+#: templates/auth/edit-publication.html:50 templates/auth/profile.html:69
+#: templates/auth/profile.html:82
+msgid "no_more_5mb"
+msgstr "No more than 5MB"
+
+#: templates/auth/add-publication.html:61
+#: templates/auth/add-publication.html:64
+#: templates/auth/edit-publication.html:62
+#: templates/auth/edit-publication.html:65
+msgid "header"
+msgstr "Title"
+
+#: templates/auth/add-publication.html:72
+#: templates/auth/add-publication.html:75
+#: templates/auth/edit-publication.html:73
+#: templates/auth/edit-publication.html:77
+msgid "date_of_publication"
+msgstr "Publication date"
+
+#: templates/auth/add-publication.html:83
+#: templates/auth/add-publication.html:86
+#: templates/auth/edit-publication.html:85
+#: templates/auth/edit-publication.html:88
+msgid "announcement"
+msgstr "Announcement"
+
+#: templates/auth/add-publication.html:101
+#: templates/auth/add-publication.html:106
+#: templates/auth/edit-publication.html:106
+msgid "by_subscription"
+msgstr "By subscription?"
+
+#: templates/auth/add-publication.html:106
+#: templates/auth/edit-publication.html:111 templates/auth/profile.html:191
+#: templates/page.html:580
+msgid "scope_of_expertise"
+msgstr "Area of expertise"
+
+#: templates/auth/add-publication.html:116
+#: templates/auth/edit-publication.html:128
+msgid "countries"
+msgstr "Countries"
+
+#: templates/auth/add-publication.html:126
+#: templates/auth/edit-publication.html:145 templates/page.html:279
+msgid "type_of_publication"
+msgstr "Publication type"
+
+#: templates/auth/add-publication.html:141
+#: templates/auth/add-publication.html:145
+#: templates/auth/edit-publication.html:167
+#: templates/auth/edit-publication.html:171
+msgid "sequence_number"
+msgstr "Sequence number"
+
+#: templates/auth/add-publication.html:158
+#: templates/auth/my-publications.html:59
+msgid "create_an_article"
+msgstr "Create an article"
+
+#: templates/auth/edit-publication.html:49
+msgid "new_image"
+msgstr "New image"
+
+#: templates/auth/edit-publication.html:184
+msgid "save_changes"
+msgstr "Save changes"
+
+#: templates/auth/edit-publication.html:186
+#: templates/auth/edit-publication.html:200
+msgid "delete_article"
+msgstr "Delete article"
+
+#: templates/auth/edit-publication.html:204
+msgid "you_are_sure"
+msgstr "Are you sure you want to delete the article"
+
+#: templates/auth/edit-publication.html:208
+msgid "cancel"
+msgstr "Cancel"
+
+#: templates/auth/edit-publication.html:211
+msgid "delete"
+msgstr "Delete"
+
+#: templates/auth/my-plain.html:6 templates/auth/my-plain.html:43
+#: templates/auth/my-publications.html:45 templates/auth/profile.html:45
+msgid "my_subscripe"
+msgstr "My subscription"
+
+#: templates/auth/my-plain.html:18 templates/auth/my-plain.html:37
+#: templates/auth/my-publications.html:19
+#: templates/auth/my-publications.html:38 templates/auth/profile.html:7
+#: templates/auth/profile.html:19 templates/auth/profile.html:38
+msgid "profile"
+msgstr "Profile"
+
+#: templates/auth/my-plain.html:20 templates/auth/my-publications.html:21
+#: templates/auth/profile.html:21
+msgid "welcome"
+msgstr "Welcome"
+
+#: templates/auth/my-plain.html:46 templates/auth/my-publications.html:49
+#: templates/auth/profile.html:49
+msgid "logout"
+msgstr "Logout"
+
+#: templates/auth/my-publications.html:67
+msgid "published"
+msgstr "Published"
+
+#: templates/auth/my-publications.html:69
+msgid "on_moderation"
+msgstr "On moderation"
+
+#: templates/auth/my-publications.html:108 templates/page.html:361
+msgid "no_publications_yet"
+msgstr "No publications yet ..."
+
+#: templates/auth/profile.html:69
+msgid "other_photo"
+msgstr "Upload another profile photo"
+
+#: templates/auth/profile.html:81
+msgid "profile_photo_upload"
+msgstr "Upload profile photo"
+
+#: templates/auth/profile.html:89
+msgid "information_about_me"
+msgstr "Information about me"
+
+#: templates/auth/profile.html:97 templates/auth/profile.html:100
+#: templates/includes/application.html:17 templates/includes/modals.html:15
+#: templates/page.html:228 templates/page.html:552
+msgid "name"
+msgstr "Name"
+
+#: templates/auth/profile.html:108 templates/auth/profile.html:111
+#: templates/page.html:560
+msgid "lastname"
+msgstr "Lastname"
+
+#: templates/auth/profile.html:121 templates/auth/profile.html:124
+#: templates/includes/application.html:23 templates/includes/modals.html:20
+#: templates/page.html:234
+msgid "phone"
+msgstr "Phone"
+
+#: templates/auth/profile.html:158 templates/auth/profile.html:161
+#: templates/page.html:237
+msgid "post"
+msgstr "Post"
+
+#: templates/auth/profile.html:167 templates/auth/profile.html:168
+msgid "biography"
+msgstr "Biography"
+
+#: templates/auth/profile.html:171 templates/auth/profile.html:172
+#: templates/page.html:588
+msgid "description_of_the_experience"
+msgstr "Experience description"
+
+#: templates/auth/profile.html:178 templates/auth/profile.html:187
+#: templates/page.html:574
+msgid "country"
+msgstr "Country"
+
+#: templates/auth/profile.html:223 templates/auth/profile.html:229
+msgid "new_password"
+msgstr "New password"
+
+#: templates/auth/profile.html:232
+msgid "do_not_change_your_password"
+msgstr "If you do not want to change your password, leave the field empty!"
+
+#: templates/auth/profile.html:234
+msgid "update_information"
+msgstr "Update information"
+
+#: templates/home.html:20
+msgid "our_services"
+msgstr "Our Services"
+
+#: templates/home.html:35
+msgid "what_are_we_doing"
+msgstr "What we do"
+
+#: templates/home.html:55
+msgid "why_us"
+msgstr "Why Steppe Intelligence"
+
+#: templates/home.html:76 templates/page.html:142 templates/page.html:218
+msgid "get_trial"
+msgstr "Request a sample issue"
+
+#: templates/includes/application.html:7
+msgid "feedback_form"
+msgstr "Feedback form"
+
+#: templates/includes/application.html:26
+msgid "message"
+msgstr "Message"
+
+#: templates/includes/application.html:29 templates/includes/modals.html:27
+msgid "send"
+msgstr "Send"
+
+#: templates/includes/modals.html:8
+msgid "online_application"
+msgstr "Online application"
+
+#: templates/page.html:83
+msgid "become_a_part"
+msgstr "Join the network"
+
+#: templates/page.html:124
+msgid "more"
+msgstr "Learn more"
+
+#: templates/page.html:148
+msgid "what_is_included"
+msgstr "What’s in every issue"
+
+#: templates/page.html:167
+msgid "for_him"
+msgstr "Who it's for"
+
+#: templates/page.html:187
+msgid "plains"
+msgstr "Pricing"
+
+#: templates/page.html:200
+msgid "subscribe"
+msgstr "Subscribe"
+
+#: templates/page.html:202 templates/page.html:240
+msgid "get_trial_release"
+msgstr "Request sample issue"
+
+#: templates/page.html:263
+msgid "search_and_filters"
+msgstr "Search and filtering"
+
+#: templates/page.html:273
+msgid "search_articles"
+msgstr "Article Search"
+
+#: templates/page.html:274
+msgid "search"
+msgstr "Search"
+
+#: templates/page.html:281
+msgid "all"
+msgstr "All"
+
+#: templates/page.html:414
+msgid "suitable_for_whom"
+msgstr "Who these are for"
+
+#: templates/page.html:432
+msgid "how_training_going"
+msgstr "Formats"
+
+#: templates/page.html:457
+msgid "how_start"
+msgstr "How to start?"
+
+#: templates/page.html:495
+msgid "write_message"
+msgstr "Write an email"
+
+#: templates/page.html:506
+msgid "open_chat"
+msgstr "Go to chat"
+
+#: templates/page.html:517
+msgid "go_to_profile"
+msgstr "Open profile"
+
+#: templates/page.html:539
+msgid "create_account"
+msgstr "Create account"
+
+#: templates/page.html:540 templates/page.html:614 templates/page.html:631
+msgid "login"
+msgstr "Login"
+
+#: templates/page.html:596
+msgid "registration"
+msgstr "Registration"
+
+#: templates/page.html:617
+msgid "authorization"
+msgstr "Authorization"
+
+#: templates/page.html:629
+msgid "password"
+msgstr "Password"
+
+#: templates/page.html:639
+msgid "forgot_password"
+msgstr "Password Recovery"
+
+#: templates/page.html:647
+msgid "send_new_password"
+msgstr "Send a new password"

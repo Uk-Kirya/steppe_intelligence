@@ -1,9 +1,10 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Профиль — Steppe Intelligence
+     {% trans 'profile' %} — Steppe Intelligence
 {% endblock %}
 
 {% block content %}
@@ -13,11 +14,11 @@
             <div class="row">
                 <div class="col-12">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
-                        <li>Профиль</li>
+                        <li>{% trans 'profile' %}</li>
                     </ul>
-                    <h1>Добро пожаловать, {{ profile.name }}!</h1>
+                    <h1>{% trans 'welcome' %}, {{ profile.name }}!</h1>
                 </div>
                 {% if profile.status == 'pending_review' %}
                     <div class="col-12 mt-4">
@@ -34,18 +35,18 @@
                 <div class="col-12">
                     <ul class="nav__profile">
                         <li class="active">
-                            <a href="{% url 'accounts:home' %}">Профиль</a>
+                            <a href="{% url 'accounts:home' %}">{% trans 'profile' %}</a>
                         </li>
                         <li>
-                            <a href="{% url 'accounts:my_publications' %}">Мои публикации</a>
+                            <a href="{% url 'accounts:my_publications' %}">{% trans 'my_publications' %}</a>
                         </li>
                         <!--
                         <li>
-                            <a href="{% url 'accounts:my_plain' %}">Моя подписка</a>
+                            <a href="{% url 'accounts:my_plain' %}">{% trans 'my_subscripe' %}</a>
                         </li>
                         -->
                         <li class="ms-auto">
-                            <a href="{% url 'accounts:logout' %}">Выйти</a>
+                            <a href="{% url 'accounts:logout' %}">{% trans 'logout' %}</a>
                         </li>
                     </ul>
                 </div>
@@ -65,7 +66,7 @@
                                     </picture>
                                 </div>
                             </div>
-                            <p>Загрузить другое фото профиля<br>(не более 5МВ)</p>
+                            <p>{% trans 'other_photo' %}<br>({% trans 'no_more_5mb' %})</p>
                             <div class="input-group mt-3">
                                 <input type="file" name="photo" class="form-control" id="imageInput">
                             </div>
@@ -77,15 +78,15 @@
                                     </picture>
                                 </div>
                             </div>
-                            <h6>Загрузить фото профиля</h6>
-                            <p>(не более 5МВ)</p>
+                            <h6>{% trans 'profile_photo_upload' %}</h6>
+                            <p>({% trans 'no_more_5mb' %})</p>
                             <div class="input-group mt-3">
                                 <input type="file" name="photo" class="form-control" id="imageInput">
                             </div>
                         {% endif %}
                     </div>
                     <div class="col-lg-7 offset-lg-1 mt-4 mt-lg-0">
-                        <h5 class="mb-4">Информация обо мне</h5>
+                        <h5 class="mb-4">{% trans 'information_about_me' %}</h5>
                         <div class="profile__form__row">
                             <div class="form-floating">
                                 <input
@@ -93,10 +94,10 @@
                                         name="name"
                                         class="form-control"
                                         id="nameField"
-                                        placeholder="Имя"
+                                        placeholder="{% trans 'name' %}"
                                         value="{{ profile.name }}"
                                 >
-                                <label for="nameField">Имя</label>
+                                <label for="nameField">{% trans 'name' %}</label>
                             </div>
                             <div class="form-floating">
                                 <input
@@ -104,10 +105,10 @@
                                         name="lastname"
                                         class="form-control"
                                         id="lastnameField"
-                                        placeholder="Фамилия"
+                                        placeholder="{% trans 'lastname' %}"
                                         value="{{ profile.lastname }}"
                                 >
-                                <label for="lastnameField">Фамилия</label>
+                                <label for="lastnameField">{% trans 'lastname' %}</label>
                             </div>
                         </div>
                         <div class="profile__form__row">
@@ -117,10 +118,10 @@
                                         name="phone"
                                         class="form-control phone__mask"
                                         id="phoneField"
-                                        placeholder="Телефон"
+                                        placeholder="{% trans 'phone' %}"
                                         value="{{ profile.phone }}"
                                 >
-                                <label for="phoneField">Телефон</label>
+                                <label for="phoneField">{% trans 'phone' %}</label>
                             </div>
                             <div class="form-floating">
                                 <input
@@ -154,27 +155,27 @@
                                         name="post"
                                         class="form-control"
                                         id="postField"
-                                        placeholder="Должность"
+                                        placeholder="{% trans 'post' %}"
                                         value="{{ profile.post }}"
                                 >
-                                <label for="postField">Должность</label>
+                                <label for="postField">{% trans 'post' %}</label>
                             </div>
                         </div>
                         <hr class="mt-3 mb-4">
                         <div class="profile__form__row flex-column gap-1">
                             <div class="form-floating">
-                                <textarea class="form-control" name="bio" placeholder="Биография" id="bioField" style="height: 100px">{{ profile.bio }}</textarea>
-                                <label for="bioField">Биография</label>
+                                <textarea class="form-control" name="bio" placeholder="{% trans 'biography' %}" id="bioField" style="height: 100px">{{ profile.bio }}</textarea>
+                                <label for="bioField">{% trans 'biography' %}</label>
                             </div>
                             <div class="form-floating">
-                                <textarea class="form-control" name="experience" placeholder="Описание опыта" id="experienceField" style="height: 100px">{{ profile.experience }}</textarea>
-                                <label for="experienceField">Описание опыта</label>
+                                <textarea class="form-control" name="experience" placeholder="{% trans 'description_of_the_experience' %}" id="experienceField" style="height: 100px">{{ profile.experience }}</textarea>
+                                <label for="experienceField">{% trans 'description_of_the_experience' %}</label>
                             </div>
                         </div>
                         <hr class="mt-3 mb-4">
                         <div class="profile__form__row flex-column gap-1">
                             <div class="form-floating">
-                                <select class="form-select" id="countrySelect" name="country" aria-label="Страна">
+                                <select class="form-select" id="countrySelect" name="country" aria-label="{% trans 'country' %}">
                                     {% for country in countries %}
                                         {% if country == profile.country %}
                                             <option value="{{ country.id }}" selected>{{ country }}</option>
@@ -183,11 +184,11 @@
                                         {% endif %}
                                     {% endfor %}
                                 </select>
-                                <label for="countrySelect">Страна</label>
+                                <label for="countrySelect">{% trans 'country' %}</label>
                             </div>
                         </div>
                         <hr class="mt-3 mb-4">
-                        <p>Область экспертизы</p>
+                        <p>{% trans 'scope_of_expertise' %}</p>
                         <ul class="expertises__list mb-4">
                             {% for expertise in expertises %}
                                 <li>
@@ -219,16 +220,18 @@
                                     name="password"
                                     class="form-control"
                                     id="passwordField"
-                                    placeholder="Новый пароль"
+                                    placeholder="{% trans 'new_password' %}"
                                     autocomplete="new-password"
                                     autocorrect="off"
                                     autocapitalize="off"
                                     spellcheck="false"
                             >
-                            <label for="passwordField">Новый пароль</label>
+                            <label for="passwordField">{% trans 'new_password' %}</label>
                         </div>
-                        <p class="mt-2 mb-4">Если не хотите менять пароль, оставьте поле пустым!</p>
-                        <button type="submit" class="button">Обновить информацию</button>
+                        <p class="mt-2 mb-4">
+                            {% trans 'do_not_change_your_password' %}
+                        </p>
+                        <button type="submit" class="button">{% trans 'update_information' %}</button>
                     </div>
                 </div>
             </form>

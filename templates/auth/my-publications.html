@@ -1,9 +1,10 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Мои публикации — Steppe Intelligence
+    {% trans 'my_publications' %} — Steppe Intelligence
 {% endblock %}
 
 {% block content %}
@@ -13,11 +14,11 @@
             <div class="row">
                 <div class="col-12">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
-                        <li>Профиль</li>
+                        <li>{% trans 'profile' %}</li>
                     </ul>
-                    <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
+                    <h1>{% trans 'welcome' %}, {{ user.profile.name }}!</h1>
                 </div>
                 {% if profile.status == 'pending_review' %}
                     <div class="col-12 mt-4">
@@ -34,18 +35,18 @@
                 <div class="col-12">
                     <ul class="nav__profile">
                         <li>
-                            <a href="{% url 'accounts:home' %}">Профиль</a>
+                            <a href="{% url 'accounts:home' %}">{% trans 'profile' %}</a>
                         </li>
                         <li class="active">
-                            <a href="{% url 'accounts:my_publications' %}">Мои публикации</a>
+                            <a href="{% url 'accounts:my_publications' %}">{% trans 'my_publications' %}</a>
                         </li>
                         <!--
                         <li>
-                            <a href="{% url 'accounts:my_plain' %}">Моя подписка</a>
+                            <a href="{% url 'accounts:my_plain' %}">{% trans 'my_subscripe' %}</a>
                         </li>
                         -->
                         <li class="ms-auto">
-                            <a href="{% url 'accounts:logout' %}">Выйти</a>
+                            <a href="{% url 'accounts:logout' %}">{% trans 'logout' %}</a>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +56,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-4 add__publication">
-                    <a href="{% url 'accounts:add_publication' %}">Создать публикацию +</a>
+                    <a href="{% url 'accounts:add_publication' %}">{% trans 'create_an_article' %} +</a>
                 </div>
             </div>
             <div class="row">
@@ -63,9 +64,9 @@
                     <div class="col-md-6 col-lg-4 col-xl-3 mt-4">
                         <div class="card__3">
                             {% if publication.is_active %}
-                                <span class="badge text-bg-success m-2">Опубликована</span>
+                                <span class="badge text-bg-success m-2">{% trans 'published' %}</span>
                             {% else %}
-                                <span class="badge text-bg-warning m-2">На модерации</span>
+                                <span class="badge text-bg-warning m-2">{% trans 'on_moderation' %}</span>
                             {% endif %}
                             <div class="ratio ratio-16x9">
                                 <div>
@@ -83,7 +84,9 @@
                             </div>
                             <div class="card__3__text">
                                 <span>{{ publication.date }}</span>
-                                <a href="#">{{ publication.title_h1 }}</a>
+                                <a href="{% url 'accounts:edit_publication' pk=publication.pk %}">
+                                    {{ publication.title_h1 }}
+                                </a>
                                 <p>{{ publication.short_text }}</p>
                                 {% if publication.countries.all or publication.expertises.all or publication.types.all %}
                                     <ul>
@@ -102,7 +105,7 @@
                         </div>
                     </div>
                 {% empty %}
-                    <p class="pt-3">Публикаций пока нет ...</p>
+                    <p class="pt-3">{% trans 'no_publications_yet' %}</p>
                 {% endfor %}
                 {% if paginator.num_pages > 1 %}
                     <div class="col-12 pagination">

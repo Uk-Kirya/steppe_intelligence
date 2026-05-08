@@ -1,6 +1,7 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     {{ article.title_h1 }} — Steppe Intelligence
@@ -13,9 +14,9 @@
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
-                        <li><a href="{% url 'content:page' slug='issledovaniya' %}">Исследования</a></li>
+                        <li><a href="{% url 'content:page' slug='issledovaniya' %}">{% trans 'researches' %}</a></li>
                         <li>/</li>
                         <li>{{ article.title_h1 }}</li>
                     </ul>
@@ -42,7 +43,7 @@
                                 {{ article.date }}
                             </div>
                             <div class="shared__block">
-                                Поделиться
+                                {% trans 'share' %}
                                 {% with request.build_absolute_uri as current_url %}
                                 <div>
                                     <!-- X (Twitter) -->
@@ -91,7 +92,7 @@
                     <div class="row">
                         <div class="col-lg-3 mb-5 mb-lg-0">
                             <h2>Latest Insights</h2>
-                            <a href="{% url 'content:page' slug='issledovaniya' %}" class="button">Все публикации</a>
+                            <a href="{% url 'content:page' slug='issledovaniya' %}" class="button">{% trans 'all_publications' %}</a>
                         </div>
                         <div class="col-lg-9">
                             <div class="row">

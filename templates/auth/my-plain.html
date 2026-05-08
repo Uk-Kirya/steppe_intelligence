@@ -1,7 +1,9 @@
 {% extends 'includes/base.html' %}
 
+{% load i18n %}
+
 {% block title %}
-    Моя подписка — Steppe Intelligence
+    {% trans 'my_subscripe' %} — Steppe Intelligence
 {% endblock %}
 
 {% block content %}
@@ -11,11 +13,11 @@
             <div class="row">
                 <div class="col-12">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
-                        <li>Профиль</li>
+                        <li>{% trans 'profile' %}</li>
                     </ul>
-                    <h1>Добро пожаловать, {{ user.profile.name }}!</h1>
+                    <h1>{% trans 'welcome' %}, {{ user.profile.name }}!</h1>
                 </div>
                 {% if profile.status == 'pending_review' %}
                     <div class="col-12 mt-4">
@@ -32,16 +34,16 @@
                 <div class="col-12">
                     <ul class="nav__profile">
                         <li>
-                            <a href="{% url 'accounts:home' %}">Профиль</a>
+                            <a href="{% url 'accounts:home' %}">{% trans 'profile' %}</a>
                         </li>
                         <li>
-                            <a href="{% url 'accounts:my_publications' %}">Мои публикации</a>
+                            <a href="{% url 'accounts:my_publications' %}">{% trans 'my_publications' %}</a>
                         </li>
                         <li class="active">
-                            <a href="{% url 'accounts:my_plain' %}">Моя подписка</a>
+                            <a href="{% url 'accounts:my_plain' %}">{% trans 'my_subscripe' %}</a>
                         </li>
                         <li class="ms-auto">
-                            <a href="{% url 'accounts:logout' %}">Выйти</a>
+                            <a href="{% url 'accounts:logout' %}">{% trans 'logout' %}</a>
                         </li>
                     </ul>
                 </div>

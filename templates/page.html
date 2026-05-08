@@ -1,6 +1,7 @@
 {% extends 'includes/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     {{ page.title_h1 }} — Steppe Intelligence
@@ -13,7 +14,7 @@
             <div class="row">
                 <div class="col">
                     <ul>
-                        <li><a href="{% url 'content:home' %}">Главная</a></li>
+                        <li><a href="{% url 'content:home' %}">{% trans 'home_page' %}</a></li>
                         <li>/</li>
                         <li>{{ page.title_h1 }}</li>
                     </ul>
@@ -79,7 +80,7 @@
                                             {{ card.text }}
                                         </p>
                                     </div>
-                                    <a href="{% url 'content:page' slug='stat-ekspertom' %}" class="button">Стать частью сети</a>
+                                    <a href="{% url 'content:page' slug='stat-ekspertom' %}" class="button">{% trans 'become_a_part' %}</a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                                             {{ card.text }}
                                         </p>
                                     </div>
-                                    <a href="{% url 'content:page' slug='steppe-brief' %}" class="button">Узнать подробнее</a>
+                                    <a href="{% url 'content:page' slug='steppe-brief' %}" class="button">{% trans 'more' %}</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -138,13 +139,13 @@
                     <div class="col">
                         <div class="sb__text__1">
                             {{ page.text | safe }}
-                            <a href="#trial__form" class="button topLink">Запросить пробный выпуск</a>
+                            <a href="#trial__form" class="button topLink">{% trans 'get_trial' %}</a>
                         </div>
                     </div>
                 </div>
                 <div class="row sb__text__2">
                     <div class="col-12">
-                        <h2>Что включено в каждый выпуск</h2>
+                        <h2>{% trans 'what_is_included' %}</h2>
                     </div>
                     <div class="col-12">
                         {% for card in cards %}
@@ -163,7 +164,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2>Для кого</h2>
+                            <h2>{% trans 'for_him' %}</h2>
                         </div>
                         {% for card in cards %}
                             {% if card.type == 'type_6' %}
@@ -183,7 +184,7 @@
             <div class="container sb__text__4">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Тарифы</h2>
+                        <h2>{% trans 'plains' %}</h2>
                     </div>
                 </div>
                 <div class="row" id="trials">
@@ -196,9 +197,9 @@
                                     <p>{{ plain.text }}</p>
                                 </div>
                                 {% if plain.link %}
-                                    <a href="{{ plain.link }}">Подписаться</a>
+                                    <a href="{{ plain.link }}">{% trans 'subscribe' %}</a>
                                 {% else %}
-                                    <a href="#trial__form">Получить пробный выпуск</a>
+                                    <a href="#trial__form">{% trans 'get_trial_release' %}</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -214,7 +215,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2>Запросить пробный выпуск</h2>
+                            <h2>{% trans 'get_trial' %}</h2>
                         </div>
                         <div class="col-lg-9">
                             <form action="{% url 'content:application' %}" method="post" class="needs-validation" novalidate>
@@ -224,22 +225,28 @@
                                     <input type="hidden" name="subject" value="Запрос пробного выпуска">
 
                                     <div class="col-lg-4 mb-4">
-                                        <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
+                                        <input type="text" name="name" placeholder="{% trans 'name' %}" class="form-control" required>
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         <input type="email" name="email" placeholder="E-mail" class="form-control" required>
                                     </div>
                                     <div class="col-lg-4 mb-4">
-                                        <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
+                                        <input type="text" name="phone" placeholder="{% trans 'phone' %}" class="phone__mask form-control" required>
                                     </div>
                                     <div class="col-lg-4 mb-4">
-                                        <input type="text" name="post" placeholder="Должность" class="form-control">
+                                        <input type="text" name="post" placeholder="{% trans 'post' %}" class="form-control">
                                     </div>
                                     <div class="col-lg-4 mb-4">
-                                        <button type="submit">Получить пробный выпуск</button>
+                                        <button type="submit">{% trans 'get_trial_release' %}</button>
                                     </div>
                                     <div class="col-12">
-                                        <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                                        {% if request.LANGUAGE_CODE == 'ru' %}
+                                            <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                                        {% elif request.LANGUAGE_CODE == 'kk' %}
+                                            <p>Өтінімді жіберу отырып, сіз <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">жеке деректерді</a> өңдеуге және сақтауға келісім бересіз</p>
+                                        {% else %}
+                                            <p>By submitting this form, you consent to the processing and storage <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">personal data</a></p>
+                                        {% endif %}
                                     </div>
 
                                 </div>
@@ -253,7 +260,7 @@
         {% if page.type == 'researches' %}
             <div class="container">
                 <label for="search__filters__block" id="search__filters__button">
-                    Поиск и фильтрация
+                    {% trans 'search_and_filters' %}
                     <picture>
                         <img src="{% static 'img/filters.svg' %}" alt="">
                     </picture>
@@ -263,15 +270,15 @@
                     <div class="row">
                         <div class="col-lg-8 col-xl-9">
                             <div class="search__block">
-                                <input type="text" name="query" class="form-control" value="{{ request.GET.query }}" placeholder="Поиск статей">
-                                <button type="submit">Искать</button>
+                                <input type="text" name="query" class="form-control" value="{{ request.GET.query }}" placeholder="{% trans 'search_articles' %}">
+                                <button type="submit">{% trans 'search' %}</button>
                             </div>
                         </div>
                         <div class="col-lg-4 col-xl-3">
                             <div class="types__block">
-                                <span>Тип публикаций:</span>
+                                <span>{% trans 'type_of_publication' %}:</span>
                                 <select name="publications_type">
-                                    <option value="">Все</option>
+                                    <option value="">{% trans 'all' %}</option>
                                     {% for type in pub_types %}
                                         <option value="{{ type.id }}"
                                             {% if request.GET.publications_type == type.id|stringformat:"s" %}selected{% endif %}>
@@ -351,7 +358,7 @@
                             </div>
                         </div>
                     {% empty %}
-                        <p>Статей пока нет ...</p>
+                        <p>{% trans 'no_publications_yet' %}</p>
                     {% endfor %}
 
                     {% if paginator.num_pages > 1 %}
@@ -404,7 +411,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2>Кому подойдут наши программы</h2>
+                            <h2>{% trans 'suitable_for_whom' %}</h2>
                         </div>
                         <div class="col-12">
                             {% for card in cards %}
@@ -422,7 +429,7 @@
             <div class="container training__3">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h2>Как проходит обучение</h2>
+                        <h2>{% trans 'how_training_going' %}</h2>
                     </div>
                     <div class="col-lg-5 mt-4 mt-lg-0">
                         <p>{{ training_text_2}}</p>
@@ -447,7 +454,7 @@
             <div class="container training__4">
                 <div class="row">
                     <div class="col-12 training__4__zag">
-                        <h2>Как начать?</h2>
+                        <h2>{% trans 'how_start' %}</h2>
                         <hr>
                     </div>
                     <div class="col-12 training__4__steps">
@@ -466,43 +473,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid application__block">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Форма обратной связи</h2>
-                        </div>
-                        <div class="col-lg-9">
-                            <form action="#" method="get" class="needs-validation" novalidate>
-                                <div class="row">
-
-                                    <input type="hidden" name="type" value="Форма обратной связи">
-
-                                    <div class="col-lg-4 mb-4">
-                                        <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <input type="email" name="email" placeholder="E-mail" class="form-control" required>
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
-                                    </div>
-                                    <div class="col-lg-8 mb-4">
-                                        <textarea name="message" placeholder="Сообщение"></textarea>
-                                    </div>
-                                    <div class="col-lg-4 mb-4">
-                                        <button type="submit">Отправить</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="#">персональных данных</a></p>
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% include 'includes/application.html' %}
         {% endif %}
 
         {% if page.type == 'contacts' %}
@@ -521,7 +492,7 @@
                                 </picture>
                                 {{ email }}
                             </a>
-                            <a href="mailto:info@steppeintel.kz" target="_blank">Написать письмо</a>
+                            <a href="mailto:info@steppeintel.kz" target="_blank">{% trans 'write_message' %}</a>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -532,7 +503,7 @@
                                 </picture>
                                 {{ whatsapp.text_1 }}
                             </a>
-                            <a href="https://wa.me/77777544817" target="_blank">Открыть чат</a>
+                            <a href="https://wa.me/77777544817" target="_blank">{% trans 'open_chat' %}</a>
                         </div>
                     </div>
                     <div class="col-lg-4 mb-5 mb-lg-0">
@@ -543,7 +514,7 @@
                                 </picture>
                                 Steppe Intelligence
                             </a>
-                            <a href="{{ linkedin }}" target="_blank">Перейти в профиль</a>
+                            <a href="{{ linkedin }}" target="_blank">{% trans 'go_to_profile' %}</a>
                         </div>
                     </div>
                 </div>
@@ -565,8 +536,8 @@
             <div class="container register__block">
                 <div class="row">
                     <ul>
-                        <li><span>Создать аккаунт</span></li>
-                        <li><a href="{% url 'content:page' slug='login' %}">Войти</a></li>
+                        <li><span>{% trans 'create_account' %}</span></li>
+                        <li><a href="{% url 'content:page' slug='login' %}">{% trans 'login' %}</a></li>
                     </ul>
                     <div class="col-lg-7 mb-5 ps-lg-5 ms-lg-3">
                         {{ page.text | safe }}
@@ -578,7 +549,7 @@
                             <input
                                     type="text"
                                     name="name"
-                                    placeholder="Имя"
+                                    placeholder="{% trans 'name' %}"
                                     class="form-control"
                                     value="{{ form_data.name }}"
                                     required
@@ -586,7 +557,7 @@
                             <input
                                     type="text"
                                     name="last_name"
-                                    placeholder="Фамилия"
+                                    placeholder="{% trans 'lastname' %}"
                                     class="form-control"
                                     value="{{ form_data.last_name }}"
                                     required
@@ -600,13 +571,13 @@
                                     required
                             >
                             <select name="country">
-                                <option selected disabled>Страна</option>
+                                <option selected disabled>{% trans 'country' %}</option>
                                 {% for country in countries %}
                                     <option value="{{ country.id }}">{{ country }}</option>
                                 {% endfor %}
                             </select>
                             <div class="expertises__block">
-                                <p class="w-100 mb-2">Сфера экспертизы</p>
+                                <p class="w-100 mb-2">{% trans 'scope_of_expertise' %}</p>
                                 {% for expertise in expertises %}
                                     <label>
                                         <input type="checkbox" name="expertise" value="{{ expertise.id }}">
@@ -614,15 +585,15 @@
                                     </label>
                                 {% endfor %}
                             </div>
-                            <textarea name="description" placeholder="Краткое описание опыта" class="form-control">{{ form_data.description }}</textarea>
+                            <textarea name="description" placeholder="{% trans 'description_of_the_experience' %}" class="form-control">{{ form_data.description }}</textarea>
                             <input
                                     type="text"
                                     name="linkedin"
-                                    placeholder="Ссылка на LinkedIn"
+                                    placeholder="LinkedIn"
                                     class="form-control"
                                     value="{{ form_data.linkedin }}"
                             >
-                            <button type="submit">Зарегистрироваться</button>
+                            <button type="submit">{% trans 'registration' %}</button>
                             <hr>
                             {% for v in vars %}
                                 {% if v.name == 'register_text' %}
@@ -640,10 +611,10 @@
                 <div class="row">
                     <ul>
                         <li><a href="{% url 'content:page' slug='stat-ekspertom' %}">Создать аккаунт</a></li>
-                        <li><span>Войти</span></li>
+                        <li><span>{% trans 'login' %}</span></li>
                     </ul>
                     <div class="col-12">
-                        <h4 class="ms-lg-5 mb-3">Авторизация</h4>
+                        <h4 class="ms-lg-5 mb-3">{% trans 'authorization' %}</h4>
                         <form method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
                             <input type="hidden" name="action" value="auth">
@@ -655,9 +626,9 @@
                                     value="{{ form_data.email }}"
                                     required
                             >
-                            <input type="password" name="password" placeholder="Пароль" class="form-control" required>
+                            <input type="password" name="password" placeholder="{% trans 'password' %}" class="form-control" required>
                             <div>
-                                <button type="submit">Войти</button>
+                                <button type="submit">{% trans 'login' %}</button>
                                 <a href="#" class="button" data-bs-target="#reset_password" data-bs-toggle="modal">Забыл пароль</a>
                             </div>
                         </form>
@@ -665,7 +636,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4>Восстановление пароля</h4>
+                                        <h4>{% trans 'forgot_password' %}</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                     </div>
                                     <div class="modal-body">
@@ -673,7 +644,7 @@
                                             {% csrf_token %}
                                             <input type="hidden" name="action" value="reset_password">
                                             <input type="email" name="email" placeholder="E-mail" class="form-control" required>
-                                            <button type="submit">Отправить новый пароль</button>
+                                            <button type="submit">{% trans 'send_new_password' %}</button>
                                         </form>
                                     </div>
                                 </div>

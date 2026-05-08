@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div class="container-fluid application__block">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Форма обратной связи</h2>
+                <h2>{% trans 'feedback_form' %}</h2>
             </div>
             <div class="col-lg-9">
                 <form action="{% url 'content:application' %}" method="post" class="needs-validation" novalidate>
@@ -12,24 +14,29 @@
                         <input type="hidden" name="subject" value="Форма обратной связи">
 
                         <div class="col-lg-4 mb-4">
-                            <input type="text" name="name" placeholder="Ваше имя" class="form-control" required>
+                            <input type="text" name="name" placeholder="{% trans 'name' %}" class="form-control" required>
                         </div>
                         <div class="col-lg-4 mb-4">
                             <input type="email" name="email" placeholder="E-mail" class="form-control" required>
                         </div>
                         <div class="col-lg-4 mb-4">
-                            <input type="text" name="phone" placeholder="Телефон" class="phone__mask form-control" required>
+                            <input type="text" name="phone" placeholder="{% trans 'phone' %}" class="phone__mask form-control" required>
                         </div>
                         <div class="col-lg-8 mb-4">
-                            <textarea name="message" placeholder="Сообщение"></textarea>
+                            <textarea name="message" placeholder="{% trans 'message' %}"></textarea>
                         </div>
                         <div class="col-lg-4 mb-4">
-                            <button type="submit">Отправить</button>
+                            <button type="submit">{% trans 'send' %}</button>
                         </div>
                         <div class="col-12">
-                            <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                            {% if request.LANGUAGE_CODE == 'ru' %}
+                                <p>Отправляя заявку, Вы даете согласие на обработку и хранение <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">персональных данных</a></p>
+                            {% elif request.LANGUAGE_CODE == 'kk' %}
+                                <p>Өтінімді жіберу отырып, сіз <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">жеке деректерді</a> өңдеуге және сақтауға келісім бересіз</p>
+                            {% else %}
+                                <p>By submitting this form, you consent to the processing and storage <a href="{% url 'content:page' slug='politika-konfidencialnosti' %}">personal data</a></p>
+                            {% endif %}
                         </div>
-
                     </div>
                 </form>
             </div>

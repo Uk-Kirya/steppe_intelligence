@@ -1,29 +1,30 @@
 {% load static %}
+{% load i18n %}
 
 <div class="modal fade" id="application">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Онлайн заявка</h1>
+                <h1 class="modal-title fs-5">{% trans 'online_application' %}</h1>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form action="#" method="post" class="needs-validation" novalidate>
                     <div class="form-floating mb-3">
                         <input type="text" name="name" class="form-control" id="nameInput" placeholder="Ваше имя">
-                        <label for="nameInput">Ваше имя</label>
+                        <label for="nameInput">{% trans 'name' %}</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" name="phone" class="phone__mask form-control" id="phoneInput"
                             placeholder="Ваш телефон">
-                        <label for="phoneInput">Ваш телефон</label>
+                        <label for="phoneInput">{% trans 'phone' %}</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" name="email" class="form-control" id="emailInput"
-                            placeholder="Ваша почта">
-                        <label for="emailInput">Ваша почта</label>
+                            placeholder="E-mail">
+                        <label for="emailInput">E-mail</label>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 p-3">Отправить</button>
+                    <button type="submit" class="btn btn-primary w-100 p-3">{% trans 'send' %}</button>
                 </form>
             </div>
         </div>
@@ -37,13 +38,18 @@
             <img src="{% static 'img/close.svg' %}" alt="" class="close__button">
         </picture>
         <ul>
-            <li class="active"><a href="{% url 'content:home' %}">Главная</a></li>
-            <li><a href="#">О компании</a></li>
-            <li><a href="#">Услуги</a></li>
-            <li class="sb"><a href="#">Steppe Brief</a></li>
-            <li><a href="#">Исследования</a></li>
-            <li><a href="#">Обучение</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li {% if request.path == '/' %} class="active" {% endif %}>
+                <a href="{% url 'content:home' %}">{% trans 'home_page' %}</a>
+            </li>
+            {% for item in pages %}
+                {% if item.header_menu %}
+                    <li class="{% if item.is_dedicated %} sb {% endif %} {% if item.slug in request.path %} active {% endif %}">
+                        <a href="{% url 'content:page' slug=item.slug %}">
+                            {{ item.title_h1 }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
 </div>
