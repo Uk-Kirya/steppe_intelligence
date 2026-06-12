@@ -215,7 +215,7 @@ msgstr "Phone"
 #: templates/auth/profile.html:158 templates/auth/profile.html:161
 #: templates/page.html:237
 msgid "post"
-msgstr "Post"
+msgstr "Position"
 
 #: templates/auth/profile.html:167 templates/auth/profile.html:168
 msgid "biography"
