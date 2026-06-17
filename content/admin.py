@@ -112,10 +112,10 @@ class PublicationTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('get_image', 'title', 'date', 'author', 'is_active', 'by_subscription', 'order')
+    list_display = ('get_image', 'title', 'date', 'author', 'is_active', 'by_subscription')
     list_display_links = ('get_image', 'title')
     prepopulated_fields = {"slug": ('title',)}
-    list_editable = ('is_active', 'order')
+    list_editable = ('is_active',)
 
     search_fields = [
         'title',
@@ -128,7 +128,7 @@ class ArticleAdmin(SortableAdminMixin, admin.ModelAdmin):
         'by_subscription'
     ]
 
-    readonly_fields = ('author',)
+    readonly_fields = ('author', 'order')
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:

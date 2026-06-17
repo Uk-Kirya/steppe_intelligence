@@ -256,7 +256,7 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
-        ordering = 'order',
+        ordering = '-date',
 
     title = models.CharField(max_length=500, blank=False, verbose_name='Заголовок')
     title_h1 = models.CharField(max_length=500, blank=False, verbose_name='Заголовок H1')

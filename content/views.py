@@ -45,7 +45,7 @@ class PageView(View):
             context['expertises'] = Expertise.objects.filter(is_active=True)
             context['pub_types'] = PublicationType.objects.filter(is_active=True)
 
-            articles = Article.objects.filter(is_active=True)
+            articles = Article.objects.filter(is_active=True).order_by('date')
 
             query = request.GET.get('query')
             if query:
